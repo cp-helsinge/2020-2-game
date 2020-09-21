@@ -1,0 +1,8 @@
+hvad skal det være for et spil? (2D simpelt. Men kan godt være sjovt alligevel)
+Få ideer og find konsensus
+Hvad skal det gå ud på?
+Hvilke objekter skal der være?
+
+Intro til piskelapp
+Tegn din figur til spillet. 
+Baggrund
