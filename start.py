@@ -97,7 +97,7 @@ class CheatPage():
 
     current_game.game_objects.add({'class_name': 'Background', 'color':  pygame.Color('darkblue')})
     # Set up invisible emeny, to prevent game over
-    current_game.game_objects.add({'class_name': 'Player','position': current_game.rect.midbottom})
+    current_game.game_objects.add({'class_name': 'BasicPlayer','position': current_game.rect.midbottom})
     current_game.game_objects.add({'class_name': self.widget.game_object.currentItem().text()})
     current_game.loop()
     del current_game
@@ -105,12 +105,13 @@ class CheatPage():
 
 
   def cheat(self):
-    level = self.widget.level.text()
+    # Extract number
+    level = int(''.join(filter(str.isdigit, self.widget.level.text())))
     print("Start at level",level, self.widget.super_health.isChecked())
     window.hide()
     current_game = game.Game()
     # Set game variables to start values.
-    current_game.level_controle.set(self.widget.level.value())
+    current_game.level_controle.set(level)
     if self.widget.super_health.isChecked():
       current_game.player.health = 100000000000000000
     current_game.loop()
@@ -156,8 +157,9 @@ class MainWindow(QtWidgets.QWidget):
             self.navigate('exit')
           if e.key() == QtCore.Qt.Key_Return:
             self.navigate('play')
-        #else:
-        # self.navigate('main_page')
+        else:
+          if e.key() == QtCore.Qt.Key_Escape:
+            self.navigate('main_page')
 
   # Navigate
   def navigate(self, page_name):

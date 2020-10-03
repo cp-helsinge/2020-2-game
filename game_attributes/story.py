@@ -44,8 +44,9 @@ level.append( [
 # Learn to play and feel a success
 level.append([
   {'class_name': 'Background', 'color': pygame.Color('dodgerblue1')},
-  {'class_name': 'Music', 'file name': 'theme1.ogg'},
-  {'class_name': 'Player', 'position': (550,550), 'boundary': (0,000,1200,650)} 
+  #{'class_name': 'Music', 'file name': 'theme1.ogg'},
+  {'class_name': 'BasicPlayer', 'position': (550,550), 'boundary': (0,000,1200,650)},
+  {'class_name': 'BasicObject', 'position': (250,250)} 
 ])
 
 # Level 2 =====================================================================

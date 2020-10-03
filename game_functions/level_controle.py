@@ -67,12 +67,18 @@ class LevelControle:
       pygame.mixer.music.stop()
     except: pass
 
-    if  level:
-      if level >= len( story.level ): 
-        level = len( story.level ) -1
-      self.game_state.level = level
-    else:
-      self.game_state.level += 1
+    if not level:
+      if self.game_state.level:
+        level = self.game_state.level + 1
+      else:
+        level = 1
+
+    if level >= len( story.level ): 
+      level = len( story.level ) -1
+    elif level < 0:
+      level = 0
+
+    self.game_state.level = level
 
     # Load game game_objectss for the new level
     print("=== Loading level",self.game_state.level,"===")
@@ -80,20 +86,25 @@ class LevelControle:
     self.game_state.game_objects.list = []
 
     # Loop through list of game_objects on this level
-    if story.level and self.game_state.level in story.level and story.level[self.game_state.level]:
-      for obj in story.level[self.game_state.level]:
-        # Load pseudo classes
-        if obj['class_name'] == 'NextLevel':
-          parameters = obj.copy()
-          del parameters['class_name']
-          self.add(**parameters)
-        elif obj['class_name'] == 'Music': 
-          try: 
-            self.music = pygame.mixer.music.load(obj['file name']) 
-          except: pass  
-        # Load in-game game_objectss  
-        else:
-          self.game_state.game_objects.add(obj)
+    if not story.level or self.game_state.level < 1 or self.game_state.level >= len(story.level) or not story.level[self.game_state.level]:
+      print("Story level", self.game_state.level,"of",len(story.level)-1,"not found!")
+      # print(not story.level , self.game_state.level < 1 , self.game_state.level >= len(story.level), not story.level[self.game_state.level])
+      sys.exit(1)  
+
+    for obj in story.level[self.game_state.level]:
+      print("loading object:",obj['class_name'])
+      # Load pseudo classes
+      if obj['class_name'] == 'NextLevel':
+        parameters = obj.copy()
+        del parameters['class_name']
+        self.add(**parameters)
+      elif obj['class_name'] == 'Music': 
+        try: 
+          self.music = pygame.mixer.music.load(obj['file name']) 
+        except: pass  
+      # Load in-game game_objectss  
+      else:
+        self.game_state.game_objects.add(obj)
 
     # run next level graphics
     if self.active:
@@ -109,6 +120,10 @@ class LevelControle:
     #if not self.game_state.player:
     #  print("Story board error in level", self.game_state.level," No player object!")
     #  sys.exit(1)
+
+    if len(self.game_state.game_objects.list) <= 0:
+      print("Story board error in level", self.game_state.level," No game objects!")
+      sys.exit(1)
 
     self.playout = False
    

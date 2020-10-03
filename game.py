@@ -199,6 +199,11 @@ class Game(player_input.PlayerInput):
     except Exception as err:
       print("Music playback failed:", err)  
 
+    if len(self.game_objects.list) <= 0:
+      print("Error: there are no game objects")
+      self.exit()
+      return
+
     # Start using pygame loop timing (Frame rate)
     self.clock = pygame.time.Clock()
     while not self.stop:
@@ -214,7 +219,7 @@ class Game(player_input.PlayerInput):
       #else  
 
       # == move all objects ==
-      scroll = (0,1)
+      scroll = (0,0)
 
       for game_obj in self.game_objects.list:
         if callable(getattr(game_obj, 'update', None)):

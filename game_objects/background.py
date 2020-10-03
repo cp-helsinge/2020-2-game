@@ -11,6 +11,7 @@ from game_functions.gameobject import *
 
 class Background(Gameobject):
   def __init__(self, file_name = None, color = None ):
+    print("init background")
     # Inherit from game object class
     Gameobject.__init__(self)
 
