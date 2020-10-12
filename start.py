@@ -31,7 +31,8 @@ from PyQt5 import uic, QtCore, QtWidgets, QtGui
 import pygame
 import game
 import config
-from game_functions import common, game_classes
+import pygame
+from game_functions import common, game_classes, audio
 from game_attributes import story
 
 config.root_path     = os.path.join(os.path.dirname(__file__))       # Root of this package
@@ -114,9 +115,11 @@ class CheatPage():
     current_game.level_controle.set(level)
     if self.widget.super_health.isChecked():
       current_game.player.health = 100000000000000000
+    window.music.stop()
     current_game.loop()
     del current_game
     window.show()
+    window.music.play()
 
 class MainWindow(QtWidgets.QWidget):
   def __init__(self, *args, **kwargs):
@@ -124,6 +127,7 @@ class MainWindow(QtWidgets.QWidget):
 
     # Set screen size
     self.resize(1000, 700)
+    self.music = audio.Music('Yul Anderson - Nightbird.ogg')
 
     # Create window and let staged widged contain all the pages used.
     layout = QtWidgets.QHBoxLayout(self, spacing=0)
@@ -147,6 +151,7 @@ class MainWindow(QtWidgets.QWidget):
 
     self.keyPressEvent = self.newOnkeyPressEvent
     self.show()
+
 
   # Handle key inputs
   def newOnkeyPressEvent(self,e):
@@ -184,20 +189,27 @@ class MainWindow(QtWidgets.QWidget):
     # Start game
     elif page_name == 'play':
       self.hide()
+      self.music.stop()
       current_game = game.Game()
       current_game.start()
       del current_game
       self.show()
       self.back_button.hide()
-
+      self.music.play()
   
 # Start application
+pygame.init()
+
 app = QtWidgets.QApplication(sys.argv)
 window = MainWindow()
-
 config.window        = window
 config.app           = app
 
 app.exec_()
+
+# Close the game window
+pygame.display.quit()
+pygame.mixer.quit()
+pygame.quit()
 
 

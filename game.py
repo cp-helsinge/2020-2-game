@@ -11,17 +11,6 @@
 
   Game frame by Simon Rigét @ paragi 2019. License MIT
 
-
-pygame mixer issue for linux
-
-tried:
-
-apt-get install python-pygame
-sudo apt-get install libsdl1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev
-sudo sdl-config --cflags --libs
-
-https://stackoverflow.com/questions/32533585/pygame-projects-wont-run-pygame-error-no-available-video-device
-
 ============================================================================"""
 # Import python modules
 import pygame
@@ -32,7 +21,7 @@ import sys
 import glob
 import pprint
 from collections import defaultdict
-from game_functions import gameobject, game_classes
+from game_functions import gameobject, game_classes, audio
 import screeninfo
 import config
 
@@ -60,20 +49,9 @@ class Game(player_input.PlayerInput):
     self.fullscreen = False
     self.game_over = False
     self.suspended = False
-    
-    # Set up game screen
-    pygame.init()
-    # Set up the screen to match window size
-    #self.resize((config.screen_width,config.screen_height))
+    self.bg_music = audio.Music()
+
     self.maximise()
-
-    # start sound interface
-    if not pygame.mixer.get_init():
-      try:
-        pygame.mixer.init()
-      except Exception as err:
-        print("Error: Pygame Sound mixer failed to initialize",err)
-
 
     # Set up a canvas to paint the game on
     self.canvas = pygame.Surface((config.screen_width,config.screen_height))
@@ -103,12 +81,11 @@ class Game(player_input.PlayerInput):
     self.exit()
 
   def exit(self):
-    if self.fullscreen:
-      self.toggle_fullscreen()
-
-    # Close the game window
-    pygame.display.quit()
-    pygame.quit()
+    print("Exiting game")
+    # Minimise window. There is no build-in way in pygame to remove the window.
+    self.minimize()
+    self.bg_music.stop()
+    self.stop = True
 
   def resize(self, new_size=None):
     if new_size is None:
@@ -133,7 +110,6 @@ class Game(player_input.PlayerInput):
   def maximise(self):
     # Pygame does not support this
     # pygame.display.Info() is rather useless. Use Marcin Kurczewski's screeninfo 
-
     # Find which monitor to use. Assume using the largest screen in physical size
     monitor_list = screeninfo.get_monitors()
     physical_size = 0
@@ -160,6 +136,9 @@ class Game(player_input.PlayerInput):
     self.screen = pygame.display.set_mode(  size , pygame.RESIZABLE )  # RESIZABLE | SCALED | FULLSCREEN | HWSURFACE | DOUBLEBUF
     self.screen_width, self.screen_height = size  
     print("Maximising to:", size)
+
+  def minimize(self):
+    self.screen = pygame.display.set_mode((1,1)) 
 
   def toggle_fullscreen(self):
     self.fullscreen = not self.fullscreen
@@ -191,18 +170,12 @@ class Game(player_input.PlayerInput):
   # This is the main game loop
   def loop(self):
     self.maximise()
+    self.bg_music.play()
     self.reset_player_input()
-
-    # Play music  
-    try:
-      pygame.mixer.music.play(-1)
-    except Exception as err:
-      print("Music playback failed:", err)  
 
     if len(self.game_objects.list) <= 0:
       print("Error: there are no game objects")
-      self.exit()
-      return
+      self.stop = True
 
     # Start using pygame loop timing (Frame rate)
     self.clock = pygame.time.Clock()
@@ -298,12 +271,7 @@ class Game(player_input.PlayerInput):
 
       # Calculate timing and wait until frame rate is right
       self.clock.tick( self.frame_rate * self.game_speed )
-
-    #Pause music
-    try:
-      pygame.mixer.music.pause()
-    except: pass
-
+  
     self.exit()
 
     

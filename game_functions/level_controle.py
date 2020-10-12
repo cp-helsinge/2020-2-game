@@ -21,7 +21,7 @@ class LevelControle:
     self.music = False
     self.active = False
     self.playout = False
-
+    
   def check(self):
     # Player dead
     if self.game_state.count['player_items'] <= 0:
@@ -56,6 +56,7 @@ class LevelControle:
     self.text = text
     self.active = False
     self.sound = audio.Sound(sound)
+
 
   # Set a new game level
   def set(self, level = False):
@@ -99,9 +100,9 @@ class LevelControle:
         del parameters['class_name']
         self.add(**parameters)
       elif obj['class_name'] == 'Music': 
-        try: 
-          self.music = pygame.mixer.music.load(obj['file name']) 
-        except: pass  
+        print("Her1")
+        self.game_state.bg_music.load(obj['file name']) 
+        self.game_state.bg_music.play(-1)
       # Load in-game game_objectss  
       else:
         self.game_state.game_objects.add(obj)

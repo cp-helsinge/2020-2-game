@@ -13,6 +13,7 @@ game_obj_path = None # Game program objects
 html_path     = None # QT HTML pages
 gfx_path      = None # Graphic art and sprites
 sound_path    = None # sound effects and music
+sound_volume  = 0.3
 
 # Screen size
 screen_width  = 1200
