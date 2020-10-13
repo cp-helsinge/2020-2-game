@@ -41,7 +41,7 @@ config.game_obj_path = os.path.join(config.root_path,'game_objects') # Game prog
 config.html_path     = os.path.join(config.root_path,'qt','html')    # QT HTML pages
 config.gfx_path      = os.path.join(config.root_path,'gfx')          # Graphic art and sprites
 config.sound_path    = os.path.join(config.root_path,'sound')        # sound effects and music
-
+config.background_music = 'Yul Anderson - Nightbird.ogg'
 
 # Create a widget, using a HTML file (located in the html_path.
 # The  widget can only interpret simple HTML. It uses a subset of HTML 3.2 and 4. And css 2.1
@@ -110,7 +110,7 @@ class CheatPage():
     level = int(''.join(filter(str.isdigit, self.widget.level.text())))
     print("Start at level",level, self.widget.super_health.isChecked())
     window.hide()
-    current_game = game.Game()
+    current_game = game.Game(window.music)
     # Set game variables to start values.
     current_game.level_controle.set(level)
     if self.widget.super_health.isChecked():
@@ -119,6 +119,7 @@ class CheatPage():
     current_game.loop()
     del current_game
     window.show()
+    window.music.load(config.background_music)
     window.music.play()
 
 class MainWindow(QtWidgets.QWidget):
@@ -127,7 +128,7 @@ class MainWindow(QtWidgets.QWidget):
 
     # Set screen size
     self.resize(1000, 700)
-    self.music = audio.Music('Yul Anderson - Nightbird.ogg')
+    self.music = audio.Music(config.background_music)
 
     # Create window and let staged widged contain all the pages used.
     layout = QtWidgets.QHBoxLayout(self, spacing=0)
@@ -190,11 +191,12 @@ class MainWindow(QtWidgets.QWidget):
     elif page_name == 'play':
       self.hide()
       self.music.stop()
-      current_game = game.Game()
+      current_game = game.Game(self.music)
       current_game.start()
       del current_game
       self.show()
       self.back_button.hide()
+      self.music.load(config.background_music)
       self.music.play()
   
 # Start application

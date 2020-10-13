@@ -72,9 +72,7 @@ class Music:
 
   def play(loops=-1, start=0.0, fade_ms = 500):
     try:
-      #pygame.mixer.music.play(loops, start, fade_ms)
-      #pygame.mixer.music.play(loops=loops, start=start, fade_ms =fade_ms)
-      pygame.mixer.music.play()
+      pygame.mixer.music.play(-1)
       Music.is_paused = False
     except Exception as ex:
       print("failed to play music:",ex)

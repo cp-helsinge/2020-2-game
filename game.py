@@ -38,7 +38,7 @@ class Game(player_input.PlayerInput):
     pass
     
   # Constructor
-  def __init__(self):
+  def __init__(self, music):
     self.level = 1
     self.score = 0
     self.player = None
@@ -49,7 +49,7 @@ class Game(player_input.PlayerInput):
     self.fullscreen = False
     self.game_over = False
     self.suspended = False
-    self.bg_music = audio.Music()
+    self.bg_music = music
 
     self.maximise()
 
