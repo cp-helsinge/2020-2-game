@@ -2,18 +2,33 @@
 
 Story board
 
-The story board is a list (Array) of levels. index is 0 - number of levels.
+The story board is a list (Array) of levels. (Index 1 = first playable level)
 
 Each level consist of a list of game objects, that occur on that level. 
 Including background, player, music etc. In short: all things that occur in 
 that level of the game. 
-It also might have a next_level object, that plays, when the level is 
+It might also include a next_level object, that plays, when the level is 
 successfully completed.
 
-The game object list contains dictionaries (Associative arrays) That name and 
-describe each game object, and its parameters.
-Each game object has a member named 'class_name' all subsequent members are 
-parameters, specific to that class.
+The game object list contains dictionaries (Associative arrays) 
+This dictionary must contain a 'class_name' that name the class to load.
+All other entries are treated as parameters to that class.
+
+ex:
+  a play object, that occur at position y=550,y=500
+
+  {
+    'class_name': 'Player', 
+    'position': (550,550), 
+    'boundary': (0,000,1200,650)
+  },
+
+Class names are CamelCase with first letter as capital.
+
+Special class_names are:
+  Background 
+  Next_level
+  Music
 
 
 ============================================================================'''
