@@ -10,9 +10,9 @@ that level of the game.
 It might also include a next_level object, that plays, when the level is 
 successfully completed.
 
-The game object list contains dictionaries (Associative arrays) 
+The game object list contains dictionaries (Associative arrays) of maned parameters.
 This dictionary must contain a 'class_name' that name the class to load.
-All other entries are treated as parameters to that class.
+All other entries are treated as parameters to the class.
 
 ex:
   a play object, that occur at position y=550,y=500
@@ -23,11 +23,22 @@ ex:
     'boundary': (0,000,1200,650)
   },
 
+  an alien oponent class, appering 30 secons into the level:
+
+  {
+    'class_name': 'Alien',
+    'delay': 30, 
+    'position': (700,30), 
+    'boundary': (0,0,1000,300), 
+    'speed': 5,
+    'direction': 20
+  }
+  
 Class names are CamelCase with first letter as capital.
 
 Special class_names are:
   Background 
-  Next_level
+  NextLevel
   Music
 
 
