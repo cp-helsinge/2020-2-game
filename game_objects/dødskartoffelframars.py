@@ -13,21 +13,21 @@ import pygame
 import math
 from game_functions.gameobject import *
 
-class Henrik(Gameobject):
+class DødsKartoffel(Gameobject):
   # Variables to store animations and sounds common to all AlienAlvin1 object
   loaded = False
   sprite = None
 
   # === Initialize AlienAlvin1 ===
   def __init__(self, boundary = None, position = None, direction = 0, speed = 0, delay = 0):
-    print("init basic object")
+    print("init Døds Kartoffel")
     
     # Load animations and sounds first time this class is used
-    if not Henrik.loaded:
+    if not BasicObject.loaded:
       # Run this the first time this class is used
-      Henrik.size = (100,100)
-      Henrik.sprite = self.Animation("henrik.png", (100,100), Henrik.size) # Load sprite map
-      Henrik.loaded = True # Indicate that all common external attributes are loaded
+      BasicObject.size = (100,100)
+      BasicObject.sprite = self.Animation("dødskartoffelframars.png", (100,100), BasicObject.size) # Load sprite map
+      BasicObject.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class
     Gameobject.__init__(self, boundary, position, self.sprite.size, speed, direction)

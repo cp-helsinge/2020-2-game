@@ -40,6 +40,12 @@ Special class_names are:
   Background 
   NextLevel
   Music
+============================================================================
+
+Internal documentation for Killer Potatoes:
+player class = karlson.png
+enemy class = AlienAlvin1
+
 
 
 ============================================================================'''
