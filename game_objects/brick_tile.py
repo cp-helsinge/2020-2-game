@@ -23,11 +23,11 @@ class BrickTile(Gameobject):
     print("init brick tile")
     
     # Load animations and sounds first time this class is used
-    if not BasicObject.loaded:
+    if not BrickTile.loaded:
       # Run this the first time this class is used
-      BasicObject.size = (100,100)
-      BasicObject.sprite = self.Animation("brick_tile.png", (100,100), BasicObject.size) # Load sprite map
-      BasicObject.loaded = True # Indicate that all common external attributes are loaded
+      BrickTile.size = (100,100)
+      BrickTile.sprite = self.Animation("brick_tile.png", (100,100), BrickTile.size) # Load sprite map
+      BrickTile.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class
     Gameobject.__init__(self, boundary, position, self.sprite.size, speed, direction)
