@@ -26,7 +26,7 @@ class Kartoffel(Gameobject):
     if not Kartoffel.loaded:
       # Run this the first time this class is used
       Kartoffel.size = (100,100)
-      Kartoffel.sprite = self.Animation("basic_object.png", (100,100), Kartoffel.size) # Load sprite map
+      Kartoffel.sprite = self.Animation("Kartoffel 100 x 100.png", (100,100), Kartoffel.size) # Load sprite map
       Kartoffel.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class
