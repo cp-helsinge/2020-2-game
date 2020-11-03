@@ -13,21 +13,21 @@ import pygame
 import math
 from game_functions.gameobject import *
 
-class BrickTile(Gameobject):
+class Simons(Gameobject):
   # Variables to store animations and sounds common to all AlienAlvin1 object
   loaded = False
   sprite = None
 
   # === Initialize AlienAlvin1 ===
   def __init__(self, boundary = None, position = None, direction = 0, speed = 0, delay = 0):
-    print("init brick tile")
+    print("init basic object")
     
     # Load animations and sounds first time this class is used
-    if not BrickTile.loaded:
+    if not Simons.loaded:
       # Run this the first time this class is used
-      BrickTile.size = (100,100)
-      BrickTile.sprite = self.Animation("brick_tile.png", (100,100), BrickTile.size) # Load sprite map
-      BrickTile.loaded = True # Indicate that all common external attributes are loaded
+      Simons.size = (100,100)
+      Simons.sprite = self.Animation("basic_object.png", (100,100), Simons.size) # Load sprite map
+      Simons.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class
     Gameobject.__init__(self, boundary, position, self.sprite.size, speed, direction)
