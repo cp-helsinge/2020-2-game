@@ -13,7 +13,7 @@ import pygame
 import math
 from game_functions.gameobject import *
 
-class matias(Gameobject):
+class Matias(Gameobject):
   # Variables to store animations and sounds common to all AlienAlvin1 object
   loaded = False
   sprite = None
@@ -23,11 +23,11 @@ class matias(Gameobject):
     print("init basic object")
     
     # Load animations and sounds first time this class is used
-    if not matias.loaded:
+    if not Matias.loaded:
       # Run this the first time this class is used
-      matias.size = (100,100)
-      matias.sprite = self.Animation("basic_object.png", (100,100), matias.size) # Load sprite map
-      matias.loaded = True # Indicate that all common external attributes are loaded
+      Matias.size = (100,100)
+      Matias.sprite = self.Animation("basic_object.png", (100,100), Matias.size) # Load sprite map
+      Matias.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class
     Gameobject.__init__(self, boundary, position, self.sprite.size, speed, direction)
