@@ -43,6 +43,10 @@ config.gfx_path      = os.path.join(config.root_path,'gfx')          # Graphic a
 config.sound_path    = os.path.join(config.root_path,'sound')        # sound effects and music
 config.background_music = 'Yul Anderson - Nightbird.ogg'
 
+print(config.root_path+"ost")
+print(config.qt_path+"ost")
+input()
+
 # Create a widget, using a HTML file (located in the html_path.
 # The  widget can only interpret simple HTML. It uses a subset of HTML 3.2 and 4. And css 2.1
 # External links wil be opned in the system browser, where as internal links wil be followed 
