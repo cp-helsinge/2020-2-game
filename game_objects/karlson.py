@@ -23,10 +23,10 @@ class Karlson(Gameobject):
   def __init__(self, boundary = None, position = None, speed = 20):
     print("init Karlson")
     # Load animations and sounds first time this class is used
-    if not BasicPlayer.loaded:
-      BasicPlayer.size = (80,80)
-      BasicPlayer.sprite = Animation("karlson.png", (100,100), Karlson.size,23) # sprite map
-      BasicPlayer.loaded = True # Indicate that all common external attributes are loaded
+    if not Karlson.loaded:
+      Karlson.size = (80,80)
+      Karlson.sprite = Animation("karlson.png", (100,100), Karlson.size,23) # sprite map
+      Karlson.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class
     Gameobject.__init__(self, boundary, position, self.sprite.size, speed)
