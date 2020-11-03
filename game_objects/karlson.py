@@ -25,7 +25,7 @@ class Karlson(Gameobject):
     # Load animations and sounds first time this class is used
     if not Karlson.loaded:
       Karlson.size = (80,80)
-      Karlson.sprite = Animation("karlson.png", (100,100), Karlson.size,23) # sprite map
+      Karlson.sprite = Animation("karlson.png", (100,100), Karlson.size,7) # sprite map
       Karlson.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class
