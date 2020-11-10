@@ -20,13 +20,13 @@ class Pizza(Gameobject):
 
   # === Initialize AlienAlvin1 ===
   def __init__(self, boundary = None, position = None, direction = 0, speed = 0, delay = 0):
-    print("init basic object")
+    print("init pizza")
     
     # Load animations and sounds first time this class is used
     if not Pizza.loaded:
       # Run this the first time this class is used
       Pizza.size = (100,100)
-      Pizza.sprite = self.Animation("basic_object.png", (100,100), Pizza.size) # Load sprite map
+      Pizza.sprite = self.Animation("pizza100x100.png", (100,100), Pizza.size) # Load sprite map
       Pizza.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class
