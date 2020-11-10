@@ -13,21 +13,21 @@ import pygame
 import math
 from game_functions.gameobject import *
 
-class Pizza(Gameobject):
+class MarsJord(Gameobject):
   # Variables to store animations and sounds common to all AlienAlvin1 object
   loaded = False
   sprite = None
 
   # === Initialize AlienAlvin1 ===
   def __init__(self, boundary = None, position = None, direction = 0, speed = 0, delay = 0):
-    print("init pizza")
+    print("init brick tile")
     
     # Load animations and sounds first time this class is used
-    if not Pizza.loaded:
+    if not MarsJord.loaded:
       # Run this the first time this class is used
-      Pizza.size = (100,100)
-      Pizza.sprite = self.Animation("pizza100x100.png", (100,100), Pizza.size) # Load sprite map
-      Pizza.loaded = True # Indicate that all common external attributes are loaded
+      MarsJord.size = (100,100)
+      MarsJord.sprite = self.Animation("mars_jord100x100.png", (100,100), MarsJord.size) # Load sprite map
+      MarsJord.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class
     Gameobject.__init__(self, boundary, position, self.sprite.size, speed, direction)
