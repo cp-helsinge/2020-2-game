@@ -79,7 +79,9 @@ level.append([
   {'class_name': 'Music', 'file name': 'theme1.ogg'},
   {'class_name': 'BasicPlayer', 'position': (550,550), 'boundary': (0,000,1200,650)},
   {'class_name': 'BasicObject', 'position': (250,250)},
-  {'class_name': 'Karlson', 'position': (550,250)} 
+  {'class_name': 'Karlson', 'position': (550,250)}
+  #{'class_name': 'Kartoffel', 'position': (700,500)} - denne er lavet af Snorre og skal pilles lidt i før den virker
+  
 ])
 
 # Level 2 =====================================================================
