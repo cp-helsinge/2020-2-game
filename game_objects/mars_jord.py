@@ -26,7 +26,7 @@ class MarsJord(Gameobject):
     if not MarsJord.loaded:
       # Run this the first time this class is used
       MarsJord.size = (100,100)
-      MarsJord.sprite = self.Animation("mars_jord.png", (100,100), MarsJord.size) # Load sprite map
+      MarsJord.sprite = self.Animation("mars_jord100x100.png", (100,100), MarsJord.size) # Load sprite map
       MarsJord.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class
