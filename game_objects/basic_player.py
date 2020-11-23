@@ -39,7 +39,7 @@ class BasicPlayer(Gameobject):
     self.game_state.player = self # !
 
     # Make sure position is within boundarys
-    self.move()
+    self.move(0,0)
 
   # Draw on game surface
   def draw(self, surface):
@@ -54,20 +54,16 @@ class BasicPlayer(Gameobject):
     if not self.inactive:
       # Move player according to input
       if self.game_state.key['left']:
-        self.direction = 180
-        self.move()
+        self.move(-self.speed)
       
       if self.game_state.key['right']:
-        self.direction = 0
-        self.move()
+        self.move(self.speed)
       
       if self.game_state.key['up']:
-        self.direction = 90
-        self.move()
+        self.move(0,self.speed)
       
       if self.game_state.key['down']:
-        self.direction = 270
-        self.move()
+        self.move(0,self.speed)
       
 
   # When hit or hitting something

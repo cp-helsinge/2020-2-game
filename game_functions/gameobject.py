@@ -52,13 +52,22 @@ class Gameobject(Animation, Sound):
     self.type = self.Type.NEUTRAL
     
   # Move object according to speed and direction, within boundary
-  def move(self):
-    radie = -math.radians(self.direction)
-    x = self.speed * math.cos(radie)
-    y = self.speed * math.sin(radie)
+  def move(self,x=0,y=0,reflect = 0):
     new_rect = self.rect.move(x,y)
     new_rect.clamp_ip(self.boundary)
+    if reflect >= 0:
+      pass
     self.rect = new_rect
+
+  def touch_boundary(self):
+    return self.rect.colliderect(self.boundary)
+
+
+  def vector2xy(self, direction, speed):
+    radie = -math.radians(direction)
+    x = speed * math.cos(radie)
+    y = speed * math.sin(radie)
+    return (x,y)
 
   # Mirror direction, when hittinh boundary
   def mirror_direction(self):
@@ -74,14 +83,6 @@ class Gameobject(Animation, Sound):
       # reduce angle to 0-360 degrees
       self.direction = ((self.direction + 360 ) % 360) // 1  
       # Change to oposite direction
-
-  def touch_boundary(self):
-    touching = False
-    touching |= self.rect.x <= self.boundary.x 
-    touching |= self.rect.y <= self.boundary.y 
-    touching |= self.rect.x + self.rect.width >= self.boundary.x + self.boundary.width 
-    touching |= self.rect.y + self.rect.height >= self.boundary.y + self.boundary.height 
-    return touching
 
   # Return true at random, on avarage at <freq> times pr. second
   def random_frequency(self, freq):

@@ -54,20 +54,16 @@ class Karlson(Gameobject):
     if not self.inactive:
       # Move player according to input
       if self.game_state.key['left']:
-        self.direction = 180
-        self.move()
+        self.move(-self.speed)
       
       if self.game_state.key['right']:
-        self.direction = 0
-        self.move()
+        self.move(self.speed)
       
       if self.game_state.key['up']:
-        self.direction = 90
-        self.move()
+        self.move(0,-self.speed)
       
       if self.game_state.key['down']:
-        self.direction = 270
-        self.move()
+        self.move(0,self.speed)
       
 
   # When hit or hitting something
@@ -75,6 +71,13 @@ class Karlson(Gameobject):
     if obj.type == self.Type.CGO or obj.type == self.Type.UNFREINDLY:
       print("I was hit by",obj.type,obj.__class__.__name__,obj.impact_power)
       self.health -= max( obj.impact_power + self.armor, 0)
+
+    # prevent going through stationary objects 
+    elif obj.type == self.Type.NEUTRAL:
+      pass
+      # if self.touch(obj.rect, self.rect):
+        # stay on top or beside stationary object
+        
 
     if self.health <= 0:
       # Reset player death animation
