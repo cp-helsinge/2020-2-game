@@ -24,7 +24,7 @@ key_bind =  {
   pygame.K_UP     : 'up',
   pygame.K_s      : 'down',  # D
   pygame.K_DOWN   : 'down',
-  pygame.K_SPACE  : 'fire',
+  pygame.K_SPACE  : 'jump',
   pygame.K_RETURN : 'fire',
   
 }

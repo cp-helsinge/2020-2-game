@@ -1,7 +1,6 @@
 """============================================================================
 
-  Player space ship
-
+  Player 
   parameters:
     boundery  : boundary of movement
     position  : Start position. (default to center of boundry)
@@ -38,6 +37,10 @@ class Karlson(Gameobject):
     # Make this object accessable to other objects
     self.game_state.player = self # !
 
+    self.vertical_speed = 0
+    self.gravity = 9.81 
+    
+
     # Make sure position is within boundarys
     self.move()
 
@@ -51,20 +54,34 @@ class Karlson(Gameobject):
       self.boundary.move(scroll)
       self.rect.move(scroll)
 
+    # Calculate gravity
+    self.vertical_speed = self.vertical_speed  + int( self.gravity / self.game_state.frame_rate ) 
+    self.vertical_speed = self.speed
+    self.direction = 270
+    self.move()
+
     if not self.inactive:
       # Move player according to input
       if self.game_state.key['left']:
-        self.move(-self.speed)
+        self.direction = 180
+        self.speed = 10
+        self.move()
       
       if self.game_state.key['right']:
-        self.move(self.speed)
+        self.direction = 0
+        self.speed = 10
+        self.move()
       
+      #if False:
       if self.game_state.key['up']:
-        self.move(0,-self.speed)
+        self.direction = 90
+        self.speed = 50
+        self.move()
       
       if self.game_state.key['down']:
-        self.move(0,self.speed)
-      
+        self.direction = 270
+        self.speed = 10
+        self.move()    
 
   # When hit or hitting something
   def hit(self, obj):
