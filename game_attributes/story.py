@@ -46,8 +46,6 @@ Internal documentation for Killer Potatoes:
 player class = karlson.png
 enemy class = AlienAlvin1
 
-
-
 ============================================================================'''
 #import sys
 import pygame
@@ -77,20 +75,27 @@ level.append( [
 level.append([
   {'class_name': 'Background', 'color': pygame.Color('dodgerblue1')},
   {'class_name': 'Music', 'file name': 'theme1.ogg'},
-  #{'class_name': 'BasicPlayer', 'position': (550,550), 'boundary': (0,000,1200,650)},
-  {'class_name': 'BasicObject', 'position': (250,250)},
+  #{'class_name': 'BasicPlayer', 'position': (550,550), 'boundary': (0,000,1200,650)}, # dette er trekant-spille-figuren som vi har fjernet
+  # {'class_name': 'BasicObject', 'position': (250,250)}, # dette er den grøne kasse som vi har fjernet
   {'class_name': 'Karlson', 'position': (550,250), 'boundary': (0,000,1200,650)},
-  #{'class_name': 'Kartoffel', 'position': (700,500)} - denne er lavet af Snorre og skal pilles lidt i før den virker
+  {'class_name': 'Kartoffel', 'position': (100,100)}, # denne er lavet af Snorre og skal pilles lidt i før den virker
   {'class_name': 'Pizza', 'position': (1000,340)},
+  {'class_name': 'BrickTile', 'position': (1,1300)},
+  {'class_name': 'Marsmand', 'position': (700,500)}
   #{'class_name': 'Mars', 'position': (1,1)}
 ])
 
 # Level 2 =====================================================================
-# devious deployment of aliens
+# deployment of primitive aliens
 
 
 # Level 3 =====================================================================
-# devious deployment of aliens
+# devious deployment of evil aliens
+
+
+# Level 3 =====================================================================
+# devious deployment of so many evil aliens the player will eventually die!
+# (MUEHAHAHAHAHAAAAAAAARH!)
 
 
 
