@@ -58,7 +58,7 @@ class Gameobject(Animation, Sound):
     y = self.speed * math.sin(radie)
     self.movexy(x,y)
     
-  def movexy(self, x, y):
+  def movexy(self, x, y, reflect =0):
     new_rect = self.rect.move(int(x),int(y))
     new_rect.clamp_ip(self.boundary)
     if reflect >= 0:
