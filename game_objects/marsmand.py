@@ -13,21 +13,21 @@ import pygame
 import math
 from game_functions.gameobject import *
 
-class marsmand(Gameobject):
+class Marsmand(Gameobject):
   # Variables to store animations and sounds common to all AlienAlvin1 object
   loaded = False
   sprite = None
 
   # === Initialize AlienAlvin1 ===
   def __init__(self, boundary = None, position = None, direction = 0, speed = 0, delay = 0):
-    print("init basic object")
+    print("init Marsmand")
     
     # Load animations and sounds first time this class is used
-    if not marsmand.loaded:
+    if not Marsmand.loaded:
       # Run this the first time this class is used
-      marsmand.size = (100,100)
-      marsmand.sprite = self.Animation("marsmand.png", (100,100), marsmand.size) # Load sprite map
-      marsmand.loaded = True # Indicate that all common external attributes are loaded
+      Marsmand.size = (100,100)
+      Marsmand.sprite = self.Animation("marsmand.png", (100,100), Marsmand.size) # Load sprite map
+      Marsmand.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class
     Gameobject.__init__(self, boundary, position, self.sprite.size, speed, direction)
