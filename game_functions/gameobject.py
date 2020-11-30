@@ -52,18 +52,13 @@ class Gameobject(Animation, Sound):
     self.type = self.Type.NEUTRAL
     
   # Move object according to speed and direction, within boundary
-  def move(self):
-    radie = -math.radians(self.direction)
-    x = self.speed * math.cos(radie)
-    y = self.speed * math.sin(radie)
-    self.movexy(x,y)
-    
-  def movexy(self, x, y, reflect =0):
+  def move(self, x=0, y=0, reflect =0):
     new_rect = self.rect.move(int(x),int(y))
     new_rect.clamp_ip(self.boundary)
     if reflect >= 0:
-      pass
+      new_speed = [new_rect.x - self.rect.x -x, new_rect.y - self.rect.y - y]
     self.rect = new_rect
+    return new_speed
 
   def touch_boundary(self):
     return self.rect.colliderect(self.boundary)

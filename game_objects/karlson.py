@@ -37,7 +37,8 @@ class Karlson(Gameobject):
     # Make this object accessable to other objects
     self.game_state.player = self # !
 
-    self.vertical_speed = 0
+    self.speed = [0,0]
+    self.jumping = False
     self.gravity = 9.81 
     
 
@@ -54,34 +55,26 @@ class Karlson(Gameobject):
       self.boundary.move(scroll)
       self.rect.move(scroll)
 
-    # Calculate gravity
-    self.vertical_speed = self.vertical_speed  + int( self.gravity / self.game_state.frame_rate ) 
-    self.vertical_speed = self.speed
-    self.direction = 270
-    self.move()
+    # Add gravity
+    self.speed = [a+b for a,b in zip(self.speed,[0,self.gravity])]
 
     if not self.inactive:
-      # Move player according to input
+      # Move player according to input. Add two lists using list comprehension ans zip (pair iterators)
       if self.game_state.key['left']:
-        self.direction = 180
-        self.speed = 10
-        self.move()
+        self.speed = [a+b for a,b in zip(self.speed,[-10,0])]
       
       if self.game_state.key['right']:
-        self.direction = 0
-        self.speed = 10
-        self.move()
-      
-      #if False:
-      if self.game_state.key['up']:
-        self.direction = 90
-        self.speed = 50
-        self.move()
-      
-      if self.game_state.key['down']:
-        self.direction = 270
-        self.speed = 10
-        self.move()    
+        self.speed = [a+b for a,b in zip(self.speed,[10,0])]
+
+      if not self.jumping and self.game_state.key['jump']:
+        self.jumping = True
+        self.speed = [a+b for a,b in zip(self.speed,[0,-100])]
+        print("Jumping")
+
+      self.speed = self.move(self.speed[0], self.speed[1])
+
+      if self.jumping and self.speed[0] == 0:
+        self.jumping = False
 
   # When hit or hitting something
   def hit(self, obj):
