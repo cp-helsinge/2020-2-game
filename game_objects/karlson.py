@@ -38,8 +38,8 @@ class Karlson(Gameobject):
     self.game_state.player = self # !
 
     self.speed = [0,0]
-    self.jumping = False
-    self.gravity = 9.81 
+    self.jumping = 0
+    self.gravity = 10 
     
 
     # Make sure position is within boundarys
@@ -51,30 +51,40 @@ class Karlson(Gameobject):
     
   # Movement
   def update(self, scroll):
-    if scroll[0] or scroll[1]:
-      self.boundary.move(scroll)
-      self.rect.move(scroll)
-
-    # Add gravity
-    self.speed = [a+b for a,b in zip(self.speed,[0,self.gravity])]
-
     if not self.inactive:
-      # Move player according to input. Add two lists using list comprehension ans zip (pair iterators)
+      # Move player according to input by adding speed, in one or more directions
       if self.game_state.key['left']:
-        self.speed = [a+b for a,b in zip(self.speed,[-10,0])]
+        self.speed = [- 10,self.speed[1]]
       
       if self.game_state.key['right']:
-        self.speed = [a+b for a,b in zip(self.speed,[10,0])]
+        self.speed = [10,self.speed[1]]
 
-      if not self.jumping and self.game_state.key['jump']:
-        self.jumping = True
-        self.speed = [a+b for a,b in zip(self.speed,[0,-100])]
-        print("Jumping")
+      if self.game_state.key['jump'] and self.jumping < 1 and self.speed[1] == 0:
+        self.jumping = 2
+        self.speed = [self.speed[0], self.speed[1] - 70]
 
+      # Add gravity
+      self.speed = [self.speed[0],self.speed[1] + self.gravity]
+
+      # Change orientation of animation to match movie direction
+      if self.speed[0] > 0:
+        self.sprite.orientation = 0
+      elif self.speed[0] < 0:  
+        self.sprite.orientation = 179 
+
+      # Move animation
       self.speed = self.move(self.speed[0], self.speed[1])
+      
+      # Determin if still performing a jump
+      if self.jumping > 0:
+        if self.speed[1] == 0:
+          self.jumping = self.jumping - 1
+        else:
+          self.jumping = 2  
 
-      if self.jumping and self.speed[0] == 0:
-        self.jumping = False
+      # if on the ground, set horisontal intertia is zero    
+      elif self.speed[1] == 0:
+        self.speed[0] = 0
 
   # When hit or hitting something
   def hit(self, obj):

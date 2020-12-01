@@ -55,10 +55,13 @@ class Gameobject(Animation, Sound):
   def move(self, x=0, y=0, reflect =0):
     new_rect = self.rect.move(int(x),int(y))
     new_rect.clamp_ip(self.boundary)
+    new_speed = [new_rect.x - self.rect.x, new_rect.y - self.rect.y]
     if reflect >= 0:
-      new_speed = [new_rect.x - self.rect.x -x, new_rect.y - self.rect.y - y]
+      new_x = int(x if new_speed[0] == x else -reflect * x)
+      new_y = int(y if new_speed[1] == y else -reflect * y)
+
     self.rect = new_rect
-    return new_speed
+    return [new_x, new_y]
 
   def touch_boundary(self):
     return self.rect.colliderect(self.boundary)
@@ -68,7 +71,7 @@ class Gameobject(Animation, Sound):
     radie = -math.radians(direction)
     x = speed * math.cos(radie)
     y = speed * math.sin(radie)
-    return (x,y)
+    return x,y
 
   # Mirror direction, when hittinh boundary
   def mirror_direction(self):
