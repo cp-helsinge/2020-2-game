@@ -41,6 +41,7 @@ class DiscoMamster(Gameobject):
     self.type = self.Type.FREINDLY
     self.impact_power = 10
     self.health = 1
+    self.orientation = 0
 
   def __del__(self):
     DiscoMamster.count -= 1

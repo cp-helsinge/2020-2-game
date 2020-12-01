@@ -81,7 +81,7 @@ level.append([
   {'class_name': 'Kartoffel', 'position': (100,100)}, # denne er lavet af Snorre og skal pilles lidt i før den virker
   {'class_name': 'Pizza', 'position': (1000,340)},
   {'class_name': 'BrickTile', 'position': (1,1300)},
-  {'class_name': 'Marsmand', 'position': (700,500)}
+  {'class_name': 'Marsmand', 'position': (700,500)},
   #{'class_name': 'Mars', 'position': (1,1)}
 ])
 
