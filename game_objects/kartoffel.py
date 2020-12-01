@@ -14,11 +14,11 @@ import math
 from game_functions.gameobject import *
 
 class Kartoffel(Gameobject):
-  # Variables to store animations and sounds common to all AlienAlvin1 object
+  # Variables to store animations and sounds common to all Kartoffel objects
   loaded = False
   sprite = None
 
-  # === Initialize AlienAlvin1 ===
+  # === Initialize Kartoffel ===
   def __init__(self, boundary = None, position = None, direction = 0, speed = 0, delay = 0):
     print("Init", self.__class__.__name__)
     
