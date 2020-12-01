@@ -11,7 +11,7 @@ import pygame
 from game_functions.gameobject import *
 import config
 
-fire_rate = 3
+fire_rate = 5
 
 class Karlson(Gameobject):
   # Variables to store animations and sounds common to all Player object
@@ -74,10 +74,10 @@ class Karlson(Gameobject):
         self.sound_shoot.play()
         self.last_shot = pygame.time.get_ticks()
         self.game_state.game_objects.add({
-          'class_name': 'BasicShot',
+          'class_name': 'DiscoMamster',
           'position': self.rect.midleft if self.sprite.orientation != 0 else self.rect.midright,
           'boundary': None,
-          'speed': -10 if self.sprite.orientation != 0 else 10,
+          'speed': -15 if self.sprite.orientation != 0 else 15,
           'direction': 180 if self.sprite.orientation != 0 else 0
         })
 
