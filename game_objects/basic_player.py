@@ -21,7 +21,8 @@ class BasicPlayer(Gameobject):
 
   # Initialize Player 
   def __init__(self, boundary = None, position = None, speed = 20):
-    print("init Bacis Player")
+    print("Init", self.__class__.__name__)
+
     # Load animations and sounds first time this class is used
     if not BasicPlayer.loaded:
       BasicPlayer.size = (80,80)

@@ -20,7 +20,7 @@ class Marsmand(Gameobject):
 
   # === Initialize AlienAlvin1 ===
   def __init__(self, boundary = None, position = None, direction = 0, speed = 0, delay = 0):
-    print("init Marsmand")
+    print("Init", self.__class__.__name__)
     
     # Load animations and sounds first time this class is used
     if not Marsmand.loaded:
@@ -33,7 +33,7 @@ class Marsmand(Gameobject):
     Gameobject.__init__(self, boundary, position, self.sprite.size, speed, direction)
 
     # Set charakteristica other than default
-    self.type = self.Type.NEUTRAL # Type of object:   NEUTRAL, CGO, UNFREINDLY,  PLAYER, FREINDLY, PLAYER_OPPONENT
+    self.type = self.Type.UNFREINDLY # Type of object:   NEUTRAL, CGO, UNFREINDLY,  PLAYER, FREINDLY, PLAYER_OPPONENT
 
     # Delayed deployment
     self.delay = delay
@@ -74,7 +74,7 @@ class Marsmand(Gameobject):
     if self.invisible:
       return 
     if obj.type == self.Type.PLAYER or obj.type == self.Type.FREINDLY:
-      print("Alien hit by",obj.__class__.__name__)
+      print(self.__class__.__name__,"hit by",obj.__class__.__name__)
       self.health -= obj.impact_power
 
     # Check if i'm dead

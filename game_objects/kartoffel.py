@@ -20,13 +20,12 @@ class Kartoffel(Gameobject):
 
   # === Initialize AlienAlvin1 ===
   def __init__(self, boundary = None, position = None, direction = 0, speed = 0, delay = 0):
-    print("init basic object")
+    print("Init", self.__class__.__name__)
     
     # Load animations and sounds first time this class is used
     if not Kartoffel.loaded:
       # Run this the first time this class is used
-      Kartoffel.size = (100,100)
-      Kartoffel.sprite = self.Animation("kartoffel100x100.png", (100,100), Kartoffel.size) # Load sprite map
+      Kartoffel.sprite = self.Animation("kartoffel100x100.png",(100,100)) # Load sprite map
       Kartoffel.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class
@@ -48,10 +47,6 @@ class Kartoffel(Gameobject):
         self.inactive = self.invisible = False
       else:
         return
-
-    if scroll[0] or scroll[1]:
-      self.boundary.move(scroll)
-      self.rect.move(scroll)
 
     # test if out of boundary and deflect sprite by mirroring direction
     if self.touch_boundary():

@@ -52,7 +52,7 @@ class Gameobject(Animation, Sound):
     self.type = self.Type.NEUTRAL
     
   # Move object according to speed and direction, within boundary
-  def move(self, x=0, y=0, reflect =0):
+  def move(self, x=0, y=0, reflect=0):
     new_rect = self.rect.move(int(x),int(y))
     new_rect.clamp_ip(self.boundary)
     new_speed = [new_rect.x - self.rect.x, new_rect.y - self.rect.y]
@@ -61,10 +61,34 @@ class Gameobject(Animation, Sound):
       new_y = int(y if new_speed[1] == y else -reflect * y)
 
     self.rect = new_rect
+    self.previous_speed = (x,y)
     return [new_x, new_y]
 
   def touch_boundary(self):
-    return self.rect.colliderect(self.boundary)
+    return not self.boundary.contains(self.rect)
+
+  # Move outside of object
+  def uncollide_rect(self, obj_rect, gravity=0):
+    x,y = 0, 0
+    # Moving down
+    if self.previous_speed[1] - gravity > 0:
+      y = obj_rect.top - self.rect.bottom 
+    # Moving up  
+    elif self.previous_speed[1] < 0:  
+      y = obj_rect.bottom - self.rect.top
+    
+    if y == 0 or self.gravity == 0: 
+      # Moving right
+      if self.previous_speed[0] > 0:
+        x = obj_rect.left - self.rect.right
+      # Moving left  
+      elif self.previous_speed[0] < 0:  
+        x = obj_rect.right - obj_rect.left 
+
+  
+
+    print("UCM",x,y)
+    self.move(x,y)
 
 
   def vector2xy(self, direction, speed):

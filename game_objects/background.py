@@ -11,7 +11,8 @@ from game_functions.gameobject import *
 
 class Background(Gameobject):
   def __init__(self, file_name = None, color = None ):
-    print("init background")
+    print("Init", self.__class__.__name__)
+
     # Inherit from game object class
     Gameobject.__init__(self)
 
@@ -28,6 +29,11 @@ class Background(Gameobject):
     else:
       self.color = (0,0,70)  
 
+
+    self.inactive = True
+    self.invisible = False
+    self.delete = False
+    self.type = self.Type.NEUTRAL
     self.rect = self.game_state.rect
 
   def draw(self, surface):

@@ -20,7 +20,7 @@ class BasicObject(Gameobject):
 
   # === Initialize AlienAlvin1 ===
   def __init__(self, boundary = None, position = None, direction = 0, speed = 0, delay = 0):
-    print("init basic object")
+    print("Init", self.__class__.__name__)
     
     # Load animations and sounds first time this class is used
     if not BasicObject.loaded:

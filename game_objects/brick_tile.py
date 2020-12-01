@@ -20,7 +20,7 @@ class BrickTile(Gameobject):
 
   # === Initialize AlienAlvin1 ===
   def __init__(self, boundary = None, position = None, direction = 0, speed = 0, delay = 0):
-    print("init brick tile")
+    print("Init", self.__class__.__name__)
     
     # Load animations and sounds first time this class is used
     if not BrickTile.loaded:
@@ -38,27 +38,13 @@ class BrickTile(Gameobject):
     # Delayed deployment
     self.delay = delay
     self.inactive = self.invisible = delay > 0
+    self.move()
     
 
   # === Movement ===
   def update(self, scroll):
-    if self.invisible: 
-      # wait fro delay to activate
-      if (pygame.time.get_ticks() - self.game_state.level_time) // 1000 > self.delay:
-        self.inactive = self.invisible = False
-      else:
-        return
-
-    if scroll[0] or scroll[1]:
-      self.boundary.move(scroll)
-      self.rect.move(scroll)
-
-    # test if out of boundary and deflect sprite by mirroring direction
-    if self.touch_boundary():
-      self.mirror_direction()
-
-    # Move sprite according to speed and direction
     self.move()
+    pass
 
   # === Draw on game surface ===
   def draw(self, surface):
@@ -71,13 +57,4 @@ class BrickTile(Gameobject):
 
   # === When hit or hitting something ===
   def hit(self, obj):
-    if self.invisible:
-      return 
-    if obj.type == self.Type.PLAYER or obj.type == self.Type.FREINDLY:
-      print("Alien hit by",obj.__class__.__name__)
-      self.health -= obj.impact_power
-
-    # Check if i'm dead
-    if self.health <=0:  
-      self.delete = True
-      self.game_state.score += 1
+    pass

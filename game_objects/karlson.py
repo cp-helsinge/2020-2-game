@@ -20,19 +20,24 @@ class Karlson(Gameobject):
 
   # Initialize Player 
   def __init__(self, boundary = None, position = None, speed = 20):
-    print("init karlson")
+    print("Init", self.__class__.__name__)
+
     # Load animations and sounds first time this class is used
     if not Karlson.loaded:
       Karlson.size = (80,80)
       Karlson.sprite = Animation("karlson_hover100x100.png", (100,100), Karlson.size,7) # sprite map
+      Karlson.sound_shoot = Sound("shot.ogg")
       Karlson.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class
     Gameobject.__init__(self, boundary, position, self.sprite.size, speed)
 
+    self.fire_rate = fire_rate
+    self.last_shot = 0
+
     # Set charakteristica other than default
     self.type = self.Type.PLAYER
-    self.impact_power = 0
+    self.impact_power = 100
 
     # Make this object accessable to other objects
     self.game_state.player = self # !
@@ -63,6 +68,19 @@ class Karlson(Gameobject):
         self.jumping = 2
         self.speed = [self.speed[0], self.speed[1] - 70]
 
+      # Fire, but only if  1 / fire_rate seconds has passed since last shot
+      if self.game_state.key['fire'] and ( ( pygame.time.get_ticks() - self.last_shot ) > 1000 / self.fire_rate ):
+        # Save stooting time
+        self.sound_shoot.play()
+        self.last_shot = pygame.time.get_ticks()
+        self.game_state.game_objects.add({
+          'class_name': 'BasicShot',
+          'position': self.rect.midleft if self.sprite.orientation != 0 else self.rect.midright,
+          'boundary': None,
+          'speed': -10 if self.sprite.orientation != 0 else 10,
+          'direction': 180 if self.sprite.orientation != 0 else 0
+        })
+
       # Add gravity
       self.speed = [self.speed[0],self.speed[1] + self.gravity]
 
@@ -90,18 +108,20 @@ class Karlson(Gameobject):
   def hit(self, obj):
     if obj.type == self.Type.CGO or obj.type == self.Type.UNFREINDLY:
       print("I was hit by",obj.type,obj.__class__.__name__,obj.impact_power)
-      self.health -= max( obj.impact_power + self.armor, 0)
+      # self.health -= max( obj.impact_power + self.armor, 0)
 
     # prevent going through stationary objects 
     elif obj.type == self.Type.NEUTRAL:
-      pass
+      # stay on top or beside stationary object
+      print("I was hit by",obj.type,obj.__class__.__name__,obj.impact_power)
+
+      self.uncollide_rect(obj.rect)
       # if self.touch(obj.rect, self.rect):
-        # stay on top or beside stationary object
+      # stay on top or beside stationary object
         
 
     if self.health <= 0:
       # Reset player death animation
-      self.sprite_dying.frame_time = False
       self.inactive = True
       #self.delete = True
 

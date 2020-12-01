@@ -39,7 +39,7 @@ class Sound:
         pass
       self.play = play
 
-  def init():
+  def init(self):
     if not Sound.mixer_init:
       try:
         pygame.mixer.init(allowedchanges=0)
@@ -55,7 +55,7 @@ class Music:
 
   def __init__(self, file_name = None):
     if not Sound.mixer_init:
-      Sound.init()
+      Sound.init(Sound)
 
 
     self.load(file_name)

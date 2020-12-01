@@ -203,13 +203,13 @@ class Game(player_input.PlayerInput):
         # Loop through all active objects
         for pos, obj1 in enumerate(self.game_objects.list):
           # Skip objects that are not active game objects
-          if obj1.delete or obj1.inactive or obj1.type == gameobject.Gameobject.Type.NEUTRAL or obj1.invisible : continue
+          if obj1.delete or obj1.inactive or obj1.invisible : continue
           # Loop through the rest of the list 
 
           for i in range(pos+1, len(self.game_objects.list) ):
             obj2 = self.game_objects.list[i]
             # Skip objects that are not active game objects
-            if obj2.delete or obj2.inactive or obj2.type == gameobject.Gameobject.Type.NEUTRAL or obj2.invisible: continue
+            if obj2.delete or obj2.inactive or obj2.invisible: continue
 
             # Compare rectangles of objects
             if obj1.rect.colliderect(obj2.rect):
