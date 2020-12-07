@@ -74,13 +74,14 @@ level.append( [
 # Learn to play and feel a success
 level.append([
   {'class_name': 'Background', 'file_name': 'mars_1200x700.png','color': pygame.Color('dodgerblue1')},
-  {'class_name': 'Music', 'file name': 'theme1.ogg'},
+  #{'class_name': 'Music', 'file name': 'theme1.ogg'},
   #{'class_name': 'BasicPlayer', 'position': (550,550), 'boundary': (0,000,1200,650)}, # dette er trekant-spille-figuren som vi har fjernet
   # {'class_name': 'BasicObject', 'position': (250,250)}, # dette er den grøne kasse som vi har fjernet
   {'class_name': 'Karlson', 'position': (550,250), 'boundary': (0,000,1200,650)},
   {'class_name': 'Kartoffel', 'position': (100,100)}, # denne er lavet af Snorre og skal pilles lidt i før den virker
   {'class_name': 'Pizza', 'position': (1000,340)},
-  {'class_name': 'BrickTile', 'position': (1,1300)},
+  {'class_name': 'BrickTile', 'position': (0,650)},
+  {'class_name': 'BrickTile', 'position': (1100,650)},
   {'class_name': 'Marsmand', 'position': (700,500)},
   #{'class_name': 'Mars', 'position': (1,1)}
 ])

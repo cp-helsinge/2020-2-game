@@ -8,6 +8,7 @@
 
 ============================================================================"""
 import pygame
+import numpy
 from game_functions.gameobject import *
 import config
 
@@ -24,8 +25,8 @@ class Karlson(Gameobject):
 
     # Load animations and sounds first time this class is used
     if not Karlson.loaded:
-      Karlson.size = (80,80)
-      Karlson.sprite = Animation("karlson_hover100x100.png", (100,100), Karlson.size,7) # sprite map
+      Karlson.size = (40,80)
+      Karlson.sprite = Animation("karlson_hover50x100.png", (50,100), Karlson.size,7) # sprite map
       Karlson.sound_shoot = Sound("shot.ogg")
       Karlson.loaded = True # Indicate that all common external attributes are loaded
 
@@ -113,9 +114,13 @@ class Karlson(Gameobject):
     # prevent going through stationary objects 
     elif obj.type == self.Type.NEUTRAL:
       # stay on top or beside stationary object
-      print("I was hit by",obj.type,obj.__class__.__name__,obj.impact_power)
+      print("I bumped into",obj.type,obj.__class__.__name__,obj.impact_power)
 
-      self.uncollide_rect(obj.rect)
+      reverse_speed = self.uncollide_rect(obj.rect,self.gravity)
+      #self.speed = [self.speed[0]-reverse_speed[0], self.speed[1]-reverse_speed[1]
+      self.speed = [0, self.speed[1]-reverse_speed[1]]
+      #self.speed = numpy.subtract(self.speed, reverse_speed)
+      print(self.speed)
       # if self.touch(obj.rect, self.rect):
       # stay on top or beside stationary object
         

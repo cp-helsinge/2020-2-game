@@ -26,7 +26,7 @@ class BrickTile(Gameobject):
     if not BrickTile.loaded:
       # Run this the first time this class is used
       BrickTile.size = (100,100)
-      BrickTile.sprite = self.Animation("brick_tile100x100.png", (100,100), BrickTile.size) # Load sprite map
+      BrickTile.sprite = self.Animation("brick_tile100x100.png", (100,100), BrickTile.size,7) # Load sprite map
       BrickTile.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class

@@ -67,28 +67,50 @@ class Gameobject(Animation, Sound):
   def touch_boundary(self):
     return not self.boundary.contains(self.rect)
 
-  # Move outside of object
+  # Move outside of object. Called on collission.
+  # self.previous_speed should hold the speed that caused a collission from a free position
   def uncollide_rect(self, obj_rect, gravity=0):
-    x,y = 0, 0
-    # Moving down
-    if self.previous_speed[1] - gravity > 0:
-      y = obj_rect.top - self.rect.bottom 
-    # Moving up  
-    elif self.previous_speed[1] < 0:  
-      y = obj_rect.bottom - self.rect.top
-    
-    if y == 0 or self.gravity == 0: 
-      # Moving right
+    reverse = [0,0]
+    vertical_move = self.speed[1] - gravity >= self.speed[0]
+
+    if vertical_move:
+      # Moving down from above object, move back up on top
+      if self.previous_speed[1] > 0 :
+        if self.rect.bottom >= obj_rect.top:
+          reverse[1] = obj_rect.top - self.rect.bottom 
+      
+        # Moving up from below object, move to beloe bottom
+      else:   
+        if self.rect.top >= obj_rect.bottom:
+          # Move on top
+          reverse[1] = obj_rect.bottom - self.rect.top
+
+      # Move horizontally back at the same ratio
+      #if reverse[1] != 0 and self.previous_speed[0] != 0:
+      #  reverse[0] = self.previous_speed[0] * reverse[1] / self.previous_speed[1]
+
+      # Check if self rect is over the side horizontally
+      if self.rect.right + reverse[0] < obj_rect.left or self.rect.left + reverse[0] > obj_rect.right:
+        vertival_move = False
+        reverse = [0,0]
+
+    if not vertical_move:
+      # hitting from the left side
       if self.previous_speed[0] > 0:
-        x = obj_rect.left - self.rect.right
-      # Moving left  
-      elif self.previous_speed[0] < 0:  
-        x = obj_rect.right - obj_rect.left 
+        reverse[0] = obj_rect.left - self.rect.right 
 
-  
+      # hitting from the right side  
+      else:
+        reverse[0] = obj_rect.right - self.rect.left
 
-    print("UCM",x,y)
-    self.move(x,y)
+      # Move vertically back at the same ratio
+      #if reverse[0] != 0 and self.previous_speed[1] != 0:
+        #reverse[1] = self.previous_speed[1] * reverse[0] / self.previous_speed[0]
+        #pass
+
+    print("UCM",reverse[0],reverse[1],self.previous_speed[1], gravity)
+    self.move(reverse[0],reverse[1])
+    return reverse
 
 
   def vector2xy(self, direction, speed):
