@@ -80,10 +80,23 @@ level.append([
   {'class_name': 'Karlson', 'position': (550,250), 'boundary': (0,000,1200,650)},
   {'class_name': 'Kartoffel', 'position': (100,100)}, # denne er lavet af Snorre og skal pilles lidt i før den virker
   {'class_name': 'Pizza', 'position': (1000,340)},
-  {'class_name': 'BrickTile', 'position': (0,650)},
-  {'class_name': 'BrickTile', 'position': (1100,650)},
   {'class_name': 'Marsmand', 'position': (700,500)},
   #{'class_name': 'Mars', 'position': (1,1)}
+  # Bottom
+  {'class_name': 'Brickwork', 'position': (0,635)},
+  {'class_name': 'Brickwork', 'position': (50,635)},
+  {'class_name': 'Brickwork', 'position': (100,635)},
+  {'class_name': 'BrickworkWorm', 'position': (150,635)},
+  {'class_name': 'Brickwork', 'position': (200,635)},
+  {'class_name': 'Brickwork', 'position': (250,635)},
+  {'class_name': 'Brickwork', 'position': (300,635)},
+  {'class_name': 'Brickwork', 'position': (350,635)},
+  {'class_name': 'Brickwork', 'position': (400,635)},
+  {'class_name': 'Brickwork', 'position': (450,635)},
+  {'class_name': 'Brickwork', 'position': (1150,635)},
+  # Trappe
+  {'class_name': 'Brickwork', 'position': (600,540)},
+  {'class_name': 'Brickwork', 'position': (500,440)},
 ])
 
 # Level 2 =====================================================================

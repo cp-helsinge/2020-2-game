@@ -114,13 +114,13 @@ class Karlson(Gameobject):
     # prevent going through stationary objects 
     elif obj.type == self.Type.NEUTRAL:
       # stay on top or beside stationary object
-      print("I bumped into",obj.type,obj.__class__.__name__,obj.impact_power)
+      #print("I bumped into",obj.type,obj.__class__.__name__,obj.impact_power)
 
       reverse_speed = self.uncollide_rect(obj.rect,self.gravity)
-      #self.speed = [self.speed[0]-reverse_speed[0], self.speed[1]-reverse_speed[1]
-      self.speed = [0, self.speed[1]-reverse_speed[1]]
-      #self.speed = numpy.subtract(self.speed, reverse_speed)
-      print(self.speed)
+      # self.speed = [self.speed[0]-reverse_speed[0], self.speed[1]-reverse_speed[1]
+      # self.speed = [0, self.speed[1]-reverse_speed[1]]
+      # self.speed = numpy.subtract(self.speed, reverse_speed)
+      self.speed = [0, 0]
       # if self.touch(obj.rect, self.rect):
       # stay on top or beside stationary object
         

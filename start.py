@@ -41,7 +41,9 @@ config.game_obj_path = os.path.join(config.root_path,'game_objects') # Game prog
 config.html_path     = os.path.join(config.root_path,'qt','html')    # QT HTML pages
 config.gfx_path      = os.path.join(config.root_path,'gfx')          # Graphic art and sprites
 config.sound_path    = os.path.join(config.root_path,'sound')        # sound effects and music
-config.background_music = 'Yul Anderson - Nightbird.ogg'
+# config.background_music = 'Yul Anderson - Nightbird.ogg'
+if( not hasattr(config,'background_music')):
+  config.background_music = ''
 
 
 # Create a widget, using a HTML file (located in the html_path.
@@ -130,6 +132,7 @@ class MainWindow(QtWidgets.QWidget):
     # Set screen size
     self.resize(1000, 700)
     self.music = audio.Music(config.background_music)
+
 
     # Create window and let staged widged contain all the pages used.
     layout = QtWidgets.QHBoxLayout(self, spacing=0)
