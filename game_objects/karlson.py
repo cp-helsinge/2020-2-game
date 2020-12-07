@@ -74,12 +74,14 @@ class Karlson(Gameobject):
         # Save stooting time
         self.sound_shoot.play()
         self.last_shot = pygame.time.get_ticks()
+        start_position = self.rect.midleft if self.sprite.orientation != 0 else self.rect.midright
+        direction = 180 if self.sprite.orientation != 0 else 0
         self.game_state.game_objects.add({
           'class_name': 'DiscoMamster',
-          'position': self.rect.midleft if self.sprite.orientation != 0 else self.rect.midright,
+          'position': start_position,
           'boundary': None,
-          'speed': -15 if self.sprite.orientation != 0 else 15,
-          'direction': 180 if self.sprite.orientation != 0 else 0
+          'speed': 10,
+          'direction': direction
         })
 
       # Add gravity

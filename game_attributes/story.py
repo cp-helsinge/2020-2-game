@@ -78,13 +78,13 @@ level.append([
   #{'class_name': 'BasicPlayer', 'position': (550,550), 'boundary': (0,000,1200,650)}, # dette er trekant-spille-figuren som vi har fjernet
   # {'class_name': 'BasicObject', 'position': (250,250)}, # dette er den grøne kasse som vi har fjernet
   {'class_name': 'Karlson', 'position': (550,250), 'boundary': (0,000,1200,650)},
-  {'class_name': 'Kartoffel', 'position': (100,100)}, # denne er lavet af Snorre og skal pilles lidt i før den virker
+  {'class_name': 'Kartoffel', 'position': (100,40)}, # denne er lavet af Snorre og skal pilles lidt i før den virker
   {'class_name': 'Pizza', 'position': (1000,340)},
   {'class_name': 'Marsmand', 'position': (700,500)},
   #{'class_name': 'Mars', 'position': (1,1)}
   # Bottom
-  {'class_name': 'Brickwork', 'position': (0,635)},
-  {'class_name': 'Brickwork', 'position': (50,635)},
+  {'class_name': 'Brickwork', 'position': (  0,635)},
+  {'class_name': 'Brickwork', 'position': ( 50,635)},
   {'class_name': 'Brickwork', 'position': (100,635)},
   {'class_name': 'BrickworkWorm', 'position': (150,635)},
   {'class_name': 'Brickwork', 'position': (200,635)},
@@ -95,8 +95,23 @@ level.append([
   {'class_name': 'Brickwork', 'position': (450,635)},
   {'class_name': 'Brickwork', 'position': (1150,635)},
   # Trappe
-  {'class_name': 'Brickwork', 'position': (600,540)},
   {'class_name': 'Brickwork', 'position': (500,440)},
+  {'class_name': 'Brickwork', 'position': (550,490)},
+  {'class_name': 'Brickwork', 'position': (600,540)},
+
+   # legde 4
+  {'class_name': 'Brickwork', 'position':     (   0,135)},
+  {'class_name': 'Brickwork', 'position':     (  50,135)},
+  {'class_name': 'Brickwork', 'position':     ( 100,135)},
+  {'class_name': 'BrickworkWorm', 'position': ( 150,135)},
+  {'class_name': 'Brickwork', 'position':     ( 200,135)},
+  {'class_name': 'Brickwork', 'position':     ( 250,135)},
+  {'class_name': 'Brickwork', 'position':     ( 300,135)},
+  {'class_name': 'Brickwork', 'position':     ( 350,135)},
+  {'class_name': 'Brickwork', 'position':     ( 400,135)},
+  {'class_name': 'Brickwork', 'position':     ( 450,135)},
+  {'class_name': 'Brickwork', 'position':     (1150,635)},
+
 ])
 
 # Level 2 =====================================================================

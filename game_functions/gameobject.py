@@ -74,8 +74,12 @@ class Gameobject(Animation, Sound):
   # self.previous_speed should hold the speed that caused a collission from a free position
   def uncollide_rect(self, obj_rect, gravity=0,reflect=0):
     reverse = [0,0]
-    vertical_move = self.speed[1] >= self.speed[0]
+    vertical_move = abs(self.previous_speed[1]) >= abs(self.previous_speed[0])
+    on_top = self.rect.bottom - self.previous_speed[1] == obj_rect.top
 
+    #if on_top:
+    #  reverse[1] = self.previous_speed[1]
+    
     if vertical_move:
       # Moving down from above object, move back up on top
       if self.previous_speed[1] > 0 :

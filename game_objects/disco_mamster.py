@@ -41,7 +41,9 @@ class DiscoMamster(Gameobject):
     self.type = self.Type.FREINDLY
     self.impact_power = 10
     self.health = 1
-    self.orientation = 0
+    self.orientation = direction
+    if direction != 0:
+      self.speed = - self.speed
 
   def __del__(self):
     DiscoMamster.count -= 1
