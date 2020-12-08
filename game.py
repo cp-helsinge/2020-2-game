@@ -194,6 +194,7 @@ class Game(player_input.PlayerInput):
       # == move all objects ==
       scroll = (0,0)
 
+      # Update object movement and animation
       for game_obj in self.game_objects.list:
         if callable(getattr(game_obj, 'update', None)):
           game_obj.update(scroll)

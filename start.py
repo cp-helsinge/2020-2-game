@@ -204,6 +204,7 @@ class MainWindow(QtWidgets.QWidget):
       self.music.play()
   
 # Start application
+os.environ["SDL_VIDEO_CENTERED"] = "1"
 pygame.init()
 
 app = QtWidgets.QApplication(sys.argv)

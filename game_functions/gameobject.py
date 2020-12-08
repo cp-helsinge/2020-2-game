@@ -53,77 +53,72 @@ class Gameobject(Animation, Sound):
     
   # Move object according to speed and direction, within boundary
   def move(self, x=0, y=0, reflect=0):
-    new_rect = self.rect.move(int(x),int(y))
-    # Make sure the new rectangle is contained within the boundary
-    new_rect.clamp_ip(self.boundary)
-    # Update the speed to the actual movement. 
-    new_speed = [new_rect.x - self.rect.x, new_rect.y - self.rect.y]
-    if reflect >= 0:
-      new_x = int(x if new_speed[0] == x else -reflect * x)
-      new_y = int(y if new_speed[1] == y else -reflect * y)
+    # Store current position
+    pos = self.rect.topleft
+    
+    self.rect = self.rect.move(int(x),int(y))
 
-    self.rect = new_rect
-    self.previous_speed = (x,y)
-    return [new_x, new_y]
+    # Make sure the new rectangle is contained within the boundary
+    self.rect.clamp_ip(self.boundary)
+
+    # Update the speed to the actual movement. 
+    self.speed = [self.rect.x - pos[0], self.rect.y - pos[1]]
+    self.previous_speed = self.speed.copy()
+
+    return self.speed
 
   # Test if rect touches the boundary
   def touch_boundary(self):
     return not self.boundary.contains(self.rect)
 
+  def uncollide_rect(self, obj_rect, gravity):
   # Move outside of object. Called on collission.
   # self.previous_speed should hold the speed that caused a collission from a free position
-  def uncollide_rect(self, obj_rect, gravity=0,reflect=0):
-    reverse = [0,0]
-    vertical_move = abs(self.previous_speed[1]) >= abs(self.previous_speed[0])
-    on_top = self.rect.bottom - self.previous_speed[1] == obj_rect.top
+     # Find ascend ration of movement
+    dx = abs(self.previous_speed[0])
+    dy = abs(self.previous_speed[1])
+    # Test for zero values
+    asc = dx / dy if dx != 0 and dy != 0 else 0 if dx == 0 else 1000
 
-    #if on_top:
-    #  reverse[1] = self.previous_speed[1]
-    
-    if vertical_move:
-      # Moving down from above object, move back up on top
-      if self.previous_speed[1] > 0 :
-        if self.rect.bottom >= obj_rect.top:
-          # print("landed on top")
-          reverse[1] = obj_rect.top - self.rect.bottom
-      
-        # Moving up from below object, move to beloe bottom
-      else:   
-        if self.rect.top >= obj_rect.bottom:
-          # Move on top
-          reverse[1] = obj_rect.bottom - self.rect.top
-          print("Bumped from below",reverse)
+    # Find:
+    # * x value to move, to avoid collission
+    # * x value of nearest side of object
+    if self.previous_speed[0] < 0:
+      x1 = obj_rect.right
+      x2 = self.rect.left
+    else:
+      x1 = obj_rect.left
+      x2 = self.rect.right
+    x = int(x1 - x2)
 
-      # Move horizontally back at the same ratio
-      #if reverse[1] != 0 and self.previous_speed[0] != 0:
-      #  reverse[0] = self.previous_speed[0] * reverse[1] / self.previous_speed[1]
+    # Find:
+    # * y value to move, to avoid collission
+    # * y value of nearest side of object
+    if self.previous_speed[1] > 0: 
+      y1 = obj_rect.top
+      y2 = self.rect.bottom
+    else:  
+      y1 = obj_rect.bottom
+      y2 = self.rect.top
+    y = int(y1 - y2)
 
-      # Check if self rect is over the side horizontally
-      if self.rect.right + reverse[0] < obj_rect.left or self.rect.left + reverse[0] > obj_rect.right:
-        vertival_move = False
-        reverse = [0,0]
-        print("skift til horisontal")
+    # Find out which side of object is hit first
+    if y != 0 and abs(x / y) < abs(asc):
+      y = int(self.previous_speed[1] * x / self.previous_speed[0])
+      #print("horisontal impact",x,y)
 
-    if not vertical_move:
-      # hitting from the left side
-      if self.previous_speed[0] > 0:
-        reverse[0] = obj_rect.left - self.rect.right 
-        print("hitting from the left",reverse)
+    else:
+      if y == -gravity:
+        x = 0  
+      elif y!= 0:  
+        x = int(self.previous_speed[0] * asc)
+      #print("vertical impact",x, y)
 
-      # hitting from the right side  
-      else:
-        reverse[0] = obj_rect.right - self.rect.left
-        print("Hitting from the right",reverse)
-
-      # Move vertically back at the same ratio
-      #if reverse[0] != 0 and self.previous_speed[1] != 0:
-        #reverse[1] = self.previous_speed[1] * reverse[0] / self.previous_speed[0]
-        #pass
-
-    #print("UCM",reverse[0],reverse[1],self.previous_speed, gravity)
-    self.move(reverse[0],reverse[1])
-    return reverse
-
+    self.rect.x = self.rect.x + x
+    self.rect.y = self.rect.y + y
+    self.previous_speed = [self.previous_speed[0] - x,self.previous_speed[1] -y]
+    #print(x,y)
+  
 
   def vector2xy(self, direction, speed):
     radie = -math.radians(direction)

@@ -39,6 +39,7 @@ class Karlson(Gameobject):
     # Set charakteristica other than default
     self.type = self.Type.PLAYER
     self.impact_power = 100
+    self.ampr = 1000
 
     # Make this object accessable to other objects
     self.game_state.player = self # !
@@ -67,7 +68,7 @@ class Karlson(Gameobject):
 
       if self.game_state.key['jump'] and self.jumping < 1 and self.speed[1] == 0:
         self.jumping = 2
-        self.speed = [self.speed[0], self.speed[1] - 70]
+        self.speed = [self.speed[0], - 40]
 
       # Fire, but only if  1 / fire_rate seconds has passed since last shot
       if self.game_state.key['fire'] and ( ( pygame.time.get_ticks() - self.last_shot ) > 1000 / self.fire_rate ):
@@ -75,6 +76,7 @@ class Karlson(Gameobject):
         self.sound_shoot.play()
         self.last_shot = pygame.time.get_ticks()
         start_position = self.rect.midleft if self.sprite.orientation != 0 else self.rect.midright
+        start_position = [start_position[0],start_position[1]-12]
         direction = 180 if self.sprite.orientation != 0 else 0
         self.game_state.game_objects.add({
           'class_name': 'DiscoMamster',
@@ -84,9 +86,6 @@ class Karlson(Gameobject):
           'direction': direction
         })
 
-      # Add gravity
-      self.speed = [self.speed[0],self.speed[1] + self.gravity]
-
       # Change orientation of animation to match movie direction
       if self.speed[0] > 0:
         self.sprite.orientation = 0
@@ -95,17 +94,28 @@ class Karlson(Gameobject):
 
       # Move animation
       self.speed = self.move(self.speed[0], self.speed[1])
-      
+      if self.jumping > 0:
+        print("Jumping",self.speed)
+
       # Determin if still performing a jump
       if self.jumping > 0:
-        if self.speed[1] == 0:
-          self.jumping = self.jumping - 1
-        else:
-          self.jumping = 2  
+        if self.speed[1] < 0: # going up
+          self.jumping = 2
+        elif self.speed[1] == 0: 
+          self.jumping -= 1 
+        if self.jumping == 0:
+          # if on the ground, set horisontal intertia is zero    
+          self.speed[0] = 0
 
-      # if on the ground, set horisontal intertia is zero    
-      elif self.speed[1] == 0:
+      if not self.jumping:
         self.speed[0] = 0
+
+
+
+        
+
+      # Add gravity
+      self.speed = [self.speed[0],self.speed[1] + self.gravity]
 
   # When hit or hitting something
   def hit(self, obj):
@@ -117,19 +127,13 @@ class Karlson(Gameobject):
     elif obj.type == self.Type.NEUTRAL:
       # stay on top or beside stationary object
       #print("I bumped into",obj.type,obj.__class__.__name__,obj.impact_power)
-
-      reverse_speed = self.uncollide_rect(obj.rect,self.gravity)
-      # self.speed = [self.speed[0]-reverse_speed[0], self.speed[1]-reverse_speed[1]
-      # self.speed = [0, self.speed[1]-reverse_speed[1]]
-      # self.speed = numpy.subtract(self.speed, reverse_speed)
+      self.uncollide_rect(obj.rect, self.gravity)
       self.speed = [0, 0]
-      # if self.touch(obj.rect, self.rect):
-      # stay on top or beside stationary object
-        
 
     if self.health <= 0:
       # Reset player death animation
       self.inactive = True
-      #self.delete = True
+      # self.delete = True
+      print("You died")
 
 
