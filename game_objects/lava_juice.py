@@ -20,20 +20,19 @@ class LavaJuice(Gameobject):
 
   # === Initialize AlienAlvin1 ===
   def __init__(self, boundary = None, position = None, direction = 0, speed = 0, delay = 0):
-    print("Init", self.__class__.__name__)
-    
     # Load animations and sounds first time this class is used
     if not LavaJuice.loaded:
       # Run this the first time this class is used
-      LavaJuice.size = (100,100)
-      LavaJuice.sprite = self.Animation("lava_juice100x100.png", (100,100), LavaJuice.size) # Load sprite map
+      print("Init", self.__class__.__name__)
+      LavaJuice.size = (50,20)
+      LavaJuice.sprite = self.Animation("lava_juice50x20.png", LavaJuice.size) # Load sprite map
       LavaJuice.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class
     Gameobject.__init__(self, boundary, position, self.sprite.size, speed, direction)
 
     # Set charakteristica other than default
-    self.type = self.Type.NEUTRAL # Type of object:   NEUTRAL, CGO, UNFREINDLY,  PLAYER, FREINDLY, PLAYER_OPPONENT
+    self.type = self.Type.UNFREINDLY # Type of object:   NEUTRAL, CGO, UNFREINDLY,  PLAYER, FREINDLY, PLAYER_OPPONENT
 
     # Delayed deployment
     self.delay = delay
@@ -43,24 +42,13 @@ class LavaJuice(Gameobject):
   # === Movement ===
   def update(self, scroll):
     if self.invisible: 
-      # wait fro delay to activate
+      # wait for delay to activate
       if (pygame.time.get_ticks() - self.game_state.level_time) // 1000 > self.delay:
         self.inactive = self.invisible = False
       else:
         return
 
-    if scroll[0] or scroll[1]:
-      self.boundary.move(scroll)
-      self.rect.move(scroll)
-
-    # test if out of boundary and deflect sprite by mirroring direction
-    if self.touch_boundary():
-      self.mirror_direction()
-
-    # Move sprite according to speed and direction
-    self.move()
-
-  # === Draw on game surface ===
+   # === Draw on game surface ===
   def draw(self, surface):
     if self.invisible:
       return
@@ -74,10 +62,6 @@ class LavaJuice(Gameobject):
     if self.invisible:
       return 
     if obj.type == self.Type.PLAYER or obj.type == self.Type.FREINDLY:
-      print("Alien hit by",obj.__class__.__name__)
-      self.health -= obj.impact_power
-
-    # Check if i'm dead
-    if self.health <=0:  
-      self.delete = True
-      self.game_state.score += 1
+      print(self.__class__.__name__,"hit by",obj.__class__.__name__)
+ 
+ 

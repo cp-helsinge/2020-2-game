@@ -21,10 +21,10 @@ class Karlson(Gameobject):
 
   # Initialize Player 
   def __init__(self, boundary = None, position = None, speed = 20):
-    print("Init", self.__class__.__name__)
-
+    
     # Load animations and sounds first time this class is used
     if not Karlson.loaded:
+      print("Init", self.__class__.__name__)
       Karlson.size = (40,80)
       Karlson.sprite = Animation("karlson_hover50x100.png", (50,100), Karlson.size,7) # sprite map
       Karlson.sound_shoot = Sound("shot.ogg")
@@ -35,6 +35,7 @@ class Karlson(Gameobject):
 
     self.fire_rate = fire_rate
     self.last_shot = 0
+    self.jumping = 0
 
     # Set charakteristica other than default
     self.type = self.Type.PLAYER
@@ -45,8 +46,8 @@ class Karlson(Gameobject):
     self.game_state.player = self # !
 
     self.speed = [0,0]
-    self.jumping = 0
-    self.gravity = 10 
+    self.gravity = 5 
+    self.jump_speed = 25
     
 
     # Make sure position is within boundarys
@@ -68,7 +69,7 @@ class Karlson(Gameobject):
 
       if self.game_state.key['jump'] and self.jumping < 1 and self.speed[1] == 0:
         self.jumping = 2
-        self.speed = [self.speed[0], - 40]
+        self.speed = [self.speed[0], - self.jump_speed]
 
       # Fire, but only if  1 / fire_rate seconds has passed since last shot
       if self.game_state.key['fire'] and ( ( pygame.time.get_ticks() - self.last_shot ) > 1000 / self.fire_rate ):
@@ -82,7 +83,7 @@ class Karlson(Gameobject):
           'class_name': 'DiscoMamster',
           'position': start_position,
           'boundary': None,
-          'speed': 10,
+          'speed': [10,0],
           'direction': direction
         })
 
@@ -94,8 +95,6 @@ class Karlson(Gameobject):
 
       # Move animation
       self.speed = self.move(self.speed[0], self.speed[1])
-      if self.jumping > 0:
-        print("Jumping",self.speed)
 
       # Determin if still performing a jump
       if self.jumping > 0:
@@ -109,10 +108,6 @@ class Karlson(Gameobject):
 
       if not self.jumping:
         self.speed[0] = 0
-
-
-
-        
 
       # Add gravity
       self.speed = [self.speed[0],self.speed[1] + self.gravity]

@@ -20,11 +20,10 @@ class BrickworkWorm(Gameobject):
 
   # === Initialize AlienAlvin1 ===
   def __init__(self, boundary = None, position = None, direction = 0, speed = 0, delay = 0):
-    print("Init", self.__class__.__name__)
-    
     # Load animations and sounds first time this class is used
     if not BrickworkWorm.loaded:
       # Run this the first time this class is used
+      print("Init", self.__class__.__name__)
       BrickworkWorm.size = (50,20)
       BrickworkWorm.sprite = self.Animation("brickwork_worm50x20.png", BrickworkWorm.size, BrickworkWorm.size,7) # Load sprite map
       BrickworkWorm.loaded = True # Indicate that all common external attributes are loaded

@@ -20,10 +20,9 @@ class Brickwork(Gameobject):
 
   # === Initialize AlienAlvin1 ===
   def __init__(self, boundary = None, position = None, direction = 0, speed = 0, delay = 0):
-    print("Init", self.__class__.__name__)
-    
     # Load animations and sounds first time this class is used
     if not Brickwork.loaded:
+      print("Init", self.__class__.__name__)
       # Run this the first time this class is used
       Brickwork.size = (50,20)
       Brickwork.sprite = self.Animation("brickwork50x20.png", Brickwork.size, Brickwork.size) # Load sprite map

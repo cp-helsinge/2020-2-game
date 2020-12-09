@@ -23,12 +23,16 @@ class DiscoMamster(Gameobject):
   count = 0
 
   # Initialize Shot 
-  def __init__(self, boundary = None, position = None, direction = 90, speed = 0):
+  def __init__(self, boundary = None, position = None, direction = 90, speed = [0,0]):
     # Load animations and sounds first time this class is used
     if not DiscoMamster.loaded:
+      print("Init", self.__class__.__name__)
       DiscoMamster.sprite = Animation("disco_mamster.png",(20,20),(20,20)) 
       DiscoMamster.loaded = True # Indicate that all common external attributes are loaded
       DiscoMamster.count += 1
+
+    if isinstance(speed, int):
+      speed = [speed,0]
 
     # Inherit from game object class
     Gameobject.__init__(self, boundary, position,self.sprite.size, speed, direction)
@@ -43,7 +47,9 @@ class DiscoMamster(Gameobject):
     self.health = 1
     self.orientation = direction
     if direction != 0:
-      self.speed = - self.speed
+      self.speed[0] = - self.speed[0]
+
+    self.impact_power =100
 
   def __del__(self):
     DiscoMamster.count -= 1
@@ -54,14 +60,14 @@ class DiscoMamster(Gameobject):
     
   # Movement
   def update(self, scroll):
-    x,y = self.move(self.speed,0)
+    x,y = self.move(self.speed[0],0)
 
     # test if out of boundary and deflect sprite by mirroring direction
-    if x != self.speed:
+    if x != self.speed[0]:
       self.delete = True
 
   # When hit or hitting something
   def hit(self, obj):
-    print(self.__class__.__name__,"hitting",obj.type,obj.__class__.__name__,obj.impact_power)
+    #print(self.__class__.__name__,"hitting", obj.type, obj.__class__.__name__,obj.impact_power)
     if not obj.type == self.Type.PLAYER and not obj.type == self.Type.FREINDLY:
       self.delete = True

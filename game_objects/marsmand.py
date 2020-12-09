@@ -25,15 +25,15 @@ class Marsmand(Gameobject):
     # Load animations and sounds first time this class is used
     if not Marsmand.loaded:
       # Run this the first time this class is used
-      Marsmand.size = (100,100)
-      Marsmand.sprite = self.Animation("marsmand.png", (100,100), Marsmand.size) # Load sprite map
+      Marsmand.size = (60,80)
+      Marsmand.sprite = self.Animation("marsmand60x80.png", Marsmand.size) # Load sprite map
       Marsmand.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class
     Gameobject.__init__(self, boundary, position, self.sprite.size, speed, direction)
 
     # Set charakteristica other than default
-    self.type = self.Type.UNFREINDLY # Type of object:   NEUTRAL, CGO, UNFREINDLY,  PLAYER, FREINDLY, PLAYER_OPPONENT
+    self.type = self.Type.CGO # Type of object:   NEUTRAL, CGO, UNFREINDLY,  PLAYER, FREINDLY, PLAYER_OPPONENT
 
     # Delayed deployment
     self.delay = delay
