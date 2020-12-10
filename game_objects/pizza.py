@@ -25,8 +25,8 @@ class Pizza(Gameobject):
     # Load animations and sounds first time this class is used
     if not Pizza.loaded:
       # Run this the first time this class is used
-      Pizza.size = (100,100)
-      Pizza.sprite = self.Animation("pizza100x100.png", (100,100), Pizza.size) # Load sprite map
+      Pizza.size = (50,50)
+      Pizza.sprite = self.Animation("pizza50x50.png", Pizza.size) # Load sprite map
       Pizza.loaded = True # Indicate that all common external attributes are loaded
 
     # Inherit from game object class

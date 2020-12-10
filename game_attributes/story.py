@@ -107,38 +107,13 @@ level.append([
   {'class_name': 'Brickwork', 'position':     (1100,635)},
   {'class_name': 'Brickwork', 'position':     (1150,635)},
 
+  # Stairs
+  {'class_name': 'Brickwork', 'position':     ( 1150,535)},
+  
   # legde 1
-  {'class_name': 'Brickwork', 'position':     (   0,535)},
-  {'class_name': 'Brickwork', 'position':     (  50,535)},
-  {'class_name': 'Brickwork', 'position':     ( 100,535)},
-  {'class_name': 'BrickworkWorm', 'position': ( 150,535)},
-  {'class_name': 'Brickwork', 'position':     ( 200,535)},
-  {'class_name': 'Brickwork', 'position':     ( 250,535)},
-  {'class_name': 'Brickwork', 'position':     ( 300,535)},
-  {'class_name': 'Brickwork', 'position':     ( 350,535)},
-  {'class_name': 'Brickwork', 'position':     ( 400,535)},
-  {'class_name': 'Brickwork', 'position':     ( 450,535)},
-  #{'class_name': 'Brickwork', 'position':     ( 500,535)},
-  #{'class_name': 'Brickwork', 'position':     ( 550,535)},
-  #
-  # {'class_name': 'Brickwork', 'position':     ( 600,535)},
-  #{'class_name': 'Brickwork', 'position':     ( 650,535)},
-  {'class_name': 'Brickwork', 'position':     ( 700,535)},
-  {'class_name': 'Brickwork', 'position':     ( 750,535)},  
-  {'class_name': 'Brickwork', 'position':     ( 800,535)},
-  {'class_name': 'Brickwork', 'position':     ( 850,535)},
-  {'class_name': 'Brickwork', 'position':     ( 900,535)},
-  {'class_name': 'Brickwork', 'position':     ( 950,535)},
-  {'class_name': 'Brickwork', 'position':     (1000,535)},
-  {'class_name': 'Brickwork', 'position':     (1050,535)},
-  #{'class_name': 'Brickwork', 'position':     (1100,535)},
-  #{'class_name': 'Brickwork', 'position':     (1150,535)},
-  {'class_name': 'Brickwork', 'position':     (1150,585)},
-
-  # legde 2
-  #{'class_name': 'Brickwork', 'position':     (   0,435)},
-  #{'class_name': 'Brickwork', 'position':     (  50,435)},
-  #{'class_name': 'Brickwork', 'position':     ( 100,435)},
+  {'class_name': 'Brickwork', 'position':     (   0,435)},
+  {'class_name': 'Brickwork', 'position':     (  50,435)},
+  {'class_name': 'Brickwork', 'position':     ( 100,435)},
   {'class_name': 'BrickworkWorm', 'position': ( 150,435)},
   {'class_name': 'Brickwork', 'position':     ( 200,435)},
   {'class_name': 'Brickwork', 'position':     ( 250,435)},
@@ -147,8 +122,8 @@ level.append([
   {'class_name': 'Brickwork', 'position':     ( 400,435)},
   {'class_name': 'Brickwork', 'position':     ( 450,435)},
   {'class_name': 'Brickwork', 'position':     ( 500,435)},
-  {'class_name': 'Brickwork', 'position':     ( 550,435)},
-  {'class_name': 'Brickwork', 'position':     ( 600,435)},
+  #{'class_name': 'Brickwork', 'position':     ( 550,435)},
+  #{'class_name': 'Brickwork', 'position':     ( 600,435)},
   {'class_name': 'Brickwork', 'position':     ( 650,435)},
   {'class_name': 'Brickwork', 'position':     ( 700,435)},
   {'class_name': 'Brickwork', 'position':     ( 750,435)},  
@@ -157,38 +132,16 @@ level.append([
   {'class_name': 'Brickwork', 'position':     ( 900,435)},
   {'class_name': 'Brickwork', 'position':     ( 950,435)},
   {'class_name': 'Brickwork', 'position':     (1000,435)},
-  {'class_name': 'Brickwork', 'position':     (1050,435)},
-  {'class_name': 'Brickwork', 'position':     (1100,435)},
-  {'class_name': 'Brickwork', 'position':     (1150,435)},
+  #{'class_name': 'Brickwork', 'position':     (1050,435)},
+  #{'class_name': 'Brickwork', 'position':     (1100,435)},
+  #{'class_name': 'Brickwork', 'position':     (1150,435)},
 
-  # legde 3
-  #{'class_name': 'Brickwork', 'position':     (   0,335)},
-  #{'class_name': 'Brickwork', 'position':     (  50,335)},
-  {'class_name': 'Brickwork', 'position':     ( 100,335)},
-  {'class_name': 'BrickworkWorm', 'position': ( 150,335)},
-  {'class_name': 'Brickwork', 'position':     ( 200,335)},
-  {'class_name': 'Brickwork', 'position':     ( 250,335)},
-  {'class_name': 'Brickwork', 'position':     ( 300,335)},
-  {'class_name': 'Brickwork', 'position':     ( 350,335)},
-  {'class_name': 'Brickwork', 'position':     ( 400,335)},
-  {'class_name': 'Brickwork', 'position':     ( 450,335)},
-  {'class_name': 'Brickwork', 'position':     ( 500,335)},
-  {'class_name': 'Brickwork', 'position':     ( 550,335)},
-  {'class_name': 'Brickwork', 'position':     ( 600,335)},
-  {'class_name': 'Brickwork', 'position':     ( 650,335)},
-  {'class_name': 'Brickwork', 'position':     ( 700,335)},
-  {'class_name': 'Brickwork', 'position':     ( 750,335)},  
-  {'class_name': 'Brickwork', 'position':     ( 800,335)},
-  {'class_name': 'Brickwork', 'position':     ( 850,335)},
-  {'class_name': 'Brickwork', 'position':     ( 900,335)},
-  {'class_name': 'Brickwork', 'position':     ( 950,335)},
-  {'class_name': 'Brickwork', 'position':     (1000,335)},
-  #{'class_name': 'Brickwork', 'position':     (1050,335)},
-  #{'class_name': 'Brickwork', 'position':     (1100,335)},
-  #{'class_name': 'Brickwork', 'position':     (1150,335)},
+  # Stairs
+  {'class_name': 'Brickwork', 'position':     (    0,335)},
+  {'class_name': 'Brickwork', 'position':     (   50,385)},
 
-  # legde 4
-  {'class_name': 'Brickwork', 'position':     (   0,235)},
+  # legde 2
+  #{'class_name': 'Brickwork', 'position':     (   0,235)},
   {'class_name': 'Brickwork', 'position':     (  50,235)},
   {'class_name': 'Brickwork', 'position':     ( 100,235)},
   {'class_name': 'BrickworkWorm', 'position': ( 150,235)},
@@ -201,9 +154,9 @@ level.append([
   {'class_name': 'Brickwork', 'position':     ( 500,235)},
   {'class_name': 'Brickwork', 'position':     ( 550,235)},
   {'class_name': 'Brickwork', 'position':     ( 600,235)},
-  #{'class_name': 'Brickwork', 'position':     ( 650,235)},
-  #{'class_name': 'Brickwork', 'position':     ( 700,235)},
-  #{'class_name': 'Brickwork', 'position':     ( 750,235)},  
+  {'class_name': 'Brickwork', 'position':     ( 650,235)},
+  {'class_name': 'Brickwork', 'position':     ( 700,235)},
+  {'class_name': 'Brickwork', 'position':     ( 750,235)},  
   {'class_name': 'Brickwork', 'position':     ( 800,235)},
   {'class_name': 'Brickwork', 'position':     ( 850,235)},
   {'class_name': 'Brickwork', 'position':     ( 900,235)},
@@ -213,7 +166,7 @@ level.append([
   {'class_name': 'Brickwork', 'position':     (1100,235)},
   {'class_name': 'Brickwork', 'position':     (1150,235)},
 
-  # legde 5
+  # legde 3
   #{'class_name': 'Brickwork', 'position':     (   0,135)},
   #{'class_name': 'Brickwork', 'position':     (  50,135)},
   {'class_name': 'Brickwork', 'position':     ( 100,135)},
@@ -241,8 +194,8 @@ level.append([
 
   {'class_name': 'Karlson', 'position': (40,650), 'boundary': (0,000,1200,650)},
   {'class_name': 'Kartoffel', 'position': (100,40)}, # denne er lavet af Snorre og skal pilles lidt i før den virker
-  {'class_name': 'Pizza', 'position': (1000,340)},
-  {'class_name': 'Marsmand', 'position': (750,450)},
+  {'class_name': 'Pizza', 'position': (1000,185)},
+  {'class_name': 'Marsmand', 'position': (350,350)},
 
 ])
 
