@@ -62,10 +62,9 @@ class Gameobject(Animation, Sound):
     self.rect.clamp_ip(self.boundary)
 
     # Update the speed to the actual movement. 
-    self.speed = [self.rect.x - pos[0], self.rect.y - pos[1]]
-    self.previous_speed = self.speed.copy()
+    self.previous_speed =  [self.rect.x - pos[0], self.rect.y - pos[1]]
 
-    return self.speed
+    return self.previous_speed
 
   # Test if rect touches the boundary
   def touch_boundary(self):

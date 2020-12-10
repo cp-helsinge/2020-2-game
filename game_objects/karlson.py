@@ -48,7 +48,6 @@ class Karlson(Gameobject):
     self.gravity = 5 
     self.jump_speed = 25
     
-
     # Make sure position is within boundarys
     self.move()
 
@@ -109,7 +108,7 @@ class Karlson(Gameobject):
         self.speed[0] = 0
 
       # Add gravity
-      self.speed = [self.speed[0],self.speed[1] + self.gravity]
+      self.speed[1] += self.gravity
 
   # When hit or hitting something
   def hit(self, obj):

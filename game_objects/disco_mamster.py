@@ -32,7 +32,7 @@ class DiscoMamster(Gameobject):
       DiscoMamster.count += 1
 
     if isinstance(speed, int):
-      speed = [speed,0]
+      self.speed = [speed,0]
 
     # Inherit from game object class
     Gameobject.__init__(self, boundary, position,self.sprite.size, speed, direction)
@@ -65,6 +65,7 @@ class DiscoMamster(Gameobject):
     # test if out of boundary and deflect sprite by mirroring direction
     if x != self.speed[0]:
       self.delete = True
+    print(x,self.speed[0])
 
   # When hit or hitting something
   def hit(self, obj):
