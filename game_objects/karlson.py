@@ -8,7 +8,6 @@
 
 ============================================================================"""
 import pygame
-import numpy
 from game_functions.gameobject import *
 import config
 
