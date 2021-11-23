@@ -40,6 +40,7 @@ class GameClasses:
           # from <game_objects_from> import <name>
           cls = __import__(game_objects_from, None, None, [name], 0)
           # class = <name>.<Name>
+          print(name)
           GameClasses.name_list[cc_name] = getattr( getattr(cls,name), cc_name )
 
           #except Exception as err:

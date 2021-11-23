@@ -60,7 +60,7 @@ level = []
 level.append( [
   {
     'class_name': 'NextLevel',
-    'sound'         : 'level2.ogg',
+    'sound'         : '',
     'text'          : '<- -> or A D to move\n[Enter] [space] or mouse button right, to shoot',
     'intro_time'    : 2, 
     'intro_effect'  : 'slide_down', 
@@ -73,130 +73,9 @@ level.append( [
 # Level 1 =====================================================================
 # Learn to play and feel a success
 level.append([
-  {'class_name': 'Background', 'file_name': 'mars_1200x700.png','color': pygame.Color('dodgerblue1')},
-  #{'class_name': 'Music', 'file name': 'theme1.ogg'},
-  #{'class_name': 'BasicPlayer', 'position': (550,550), 'boundary': (0,000,1200,650)}, # dette er trekant-spille-figuren som vi har fjernet
-  # {'class_name': 'BasicObject', 'position': (250,250)}, # dette er den grøne kasse som vi har fjernet
-  #{'class_name': 'Mars', 'position': (1,1)}
-
-  # floor
-  {'class_name': 'Brickwork', 'position':     (   0,635)},
-  {'class_name': 'Brickwork', 'position':     (  50,635)},
-  {'class_name': 'Brickwork', 'position':     ( 100,635)},
-  {'class_name': 'BrickworkWorm', 'position': ( 150,635)},
-  {'class_name': 'Brickwork', 'position':     ( 200,635)},
-  {'class_name': 'Brickwork', 'position':     ( 250,635)},
-  {'class_name': 'Brickwork', 'position':     ( 300,635)},
-  {'class_name': 'Brickwork', 'position':     ( 350,635)},
-  {'class_name': 'Brickwork', 'position':     ( 400,635)},
-  {'class_name': 'Brickwork', 'position':     ( 450,635)},
-  {'class_name': 'Brickwork', 'position':     ( 500,635)},
-  #{'class_name': 'Brickwork', 'position':     ( 550,635)},
-  {'class_name': 'LavaJuice', 'position':     ( 550,635)},
-  {'class_name': 'LavaJuice', 'position':     ( 600,635)},
-  #{'class_name': 'Brickwork', 'position':     ( 600,635)},
-  {'class_name': 'Brickwork', 'position':     ( 650,635)},
-  {'class_name': 'Brickwork', 'position':     ( 700,635)},
-  {'class_name': 'Brickwork', 'position':     ( 750,635)},  
-  {'class_name': 'Brickwork', 'position':     ( 800,635)},
-  {'class_name': 'Brickwork', 'position':     ( 850,635)},
-  {'class_name': 'Brickwork', 'position':     ( 900,635)},
-  {'class_name': 'Brickwork', 'position':     ( 950,635)},
-  {'class_name': 'Brickwork', 'position':     (1000,635)},
-  {'class_name': 'Brickwork', 'position':     (1050,635)},
-  {'class_name': 'Brickwork', 'position':     (1100,635)},
-  {'class_name': 'Brickwork', 'position':     (1150,635)},
-
-  # Stairs
-  {'class_name': 'Brickwork', 'position':     ( 1150,535)},
-  
-  # legde 1
-  {'class_name': 'Brickwork', 'position':     (   0,435)},
-  {'class_name': 'Brickwork', 'position':     (  50,435)},
-  {'class_name': 'Brickwork', 'position':     ( 100,435)},
-  {'class_name': 'BrickworkWorm', 'position': ( 150,435)},
-  {'class_name': 'Brickwork', 'position':     ( 200,435)},
-  {'class_name': 'Brickwork', 'position':     ( 250,435)},
-  {'class_name': 'Brickwork', 'position':     ( 300,435)},
-  {'class_name': 'Brickwork', 'position':     ( 350,435)},
-  {'class_name': 'Brickwork', 'position':     ( 400,435)},
-  {'class_name': 'Brickwork', 'position':     ( 450,435)},
-  {'class_name': 'Brickwork', 'position':     ( 500,435)},
-  #{'class_name': 'Brickwork', 'position':     ( 550,435)},
-  #{'class_name': 'Brickwork', 'position':     ( 600,435)},
-  {'class_name': 'Brickwork', 'position':     ( 650,435)},
-  {'class_name': 'Brickwork', 'position':     ( 700,435)},
-  {'class_name': 'Brickwork', 'position':     ( 750,435)},  
-  {'class_name': 'Brickwork', 'position':     ( 800,435)},
-  {'class_name': 'Brickwork', 'position':     ( 850,435)},
-  {'class_name': 'Brickwork', 'position':     ( 900,435)},
-  {'class_name': 'Brickwork', 'position':     ( 950,435)},
-  {'class_name': 'Brickwork', 'position':     (1000,435)},
-  #{'class_name': 'Brickwork', 'position':     (1050,435)},
-  #{'class_name': 'Brickwork', 'position':     (1100,435)},
-  #{'class_name': 'Brickwork', 'position':     (1150,435)},
-
-  # Stairs
-  {'class_name': 'Brickwork', 'position':     (    0,335)},
-  {'class_name': 'Brickwork', 'position':     (   50,385)},
-
-  # legde 2
-  #{'class_name': 'Brickwork', 'position':     (   0,235)},
-  {'class_name': 'Brickwork', 'position':     (  50,235)},
-  {'class_name': 'Brickwork', 'position':     ( 100,235)},
-  {'class_name': 'BrickworkWorm', 'position': ( 150,235)},
-  {'class_name': 'Brickwork', 'position':     ( 200,235)},
-  {'class_name': 'Brickwork', 'position':     ( 250,235)},
-  {'class_name': 'Brickwork', 'position':     ( 300,235)},
-  {'class_name': 'Brickwork', 'position':     ( 350,235)},
-  {'class_name': 'Brickwork', 'position':     ( 400,235)},
-  {'class_name': 'Brickwork', 'position':     ( 450,235)},
-  {'class_name': 'Brickwork', 'position':     ( 500,235)},
-  {'class_name': 'Brickwork', 'position':     ( 550,235)},
-  {'class_name': 'Brickwork', 'position':     ( 600,235)},
-  {'class_name': 'Brickwork', 'position':     ( 650,235)},
-  {'class_name': 'Brickwork', 'position':     ( 700,235)},
-  {'class_name': 'Brickwork', 'position':     ( 750,235)},  
-  {'class_name': 'Brickwork', 'position':     ( 800,235)},
-  {'class_name': 'Brickwork', 'position':     ( 850,235)},
-  {'class_name': 'Brickwork', 'position':     ( 900,235)},
-  {'class_name': 'Brickwork', 'position':     ( 950,235)},
-  {'class_name': 'Brickwork', 'position':     (1000,235)},
-  {'class_name': 'Brickwork', 'position':     (1050,235)},
-  {'class_name': 'Brickwork', 'position':     (1100,235)},
-  {'class_name': 'Brickwork', 'position':     (1150,235)},
-
-  # legde 3
-  #{'class_name': 'Brickwork', 'position':     (   0,135)},
-  #{'class_name': 'Brickwork', 'position':     (  50,135)},
-  {'class_name': 'Brickwork', 'position':     ( 100,135)},
-  {'class_name': 'BrickworkWorm', 'position': ( 150,135)},
-  {'class_name': 'Brickwork', 'position':     ( 200,135)},
-  {'class_name': 'Brickwork', 'position':     ( 250,135)},
-  {'class_name': 'Brickwork', 'position':     ( 300,135)},
-  {'class_name': 'Brickwork', 'position':     ( 350,135)},
-  {'class_name': 'Brickwork', 'position':     ( 400,135)},
-  {'class_name': 'Brickwork', 'position':     ( 450,135)},
-  {'class_name': 'Brickwork', 'position':     ( 500,135)},
-  {'class_name': 'Brickwork', 'position':     ( 550,135)},
-  {'class_name': 'Brickwork', 'position':     ( 600,135)},
-  {'class_name': 'Brickwork', 'position':     ( 650,135)},
-  {'class_name': 'Brickwork', 'position':     ( 700,135)},
-  {'class_name': 'Brickwork', 'position':     ( 750,135)},  
-  {'class_name': 'Brickwork', 'position':     ( 800,135)},
-  {'class_name': 'Brickwork', 'position':     ( 850,135)},
-  {'class_name': 'Brickwork', 'position':     ( 900,135)},
-  {'class_name': 'Brickwork', 'position':     ( 950,135)},
-  {'class_name': 'Brickwork', 'position':     (1000,135)},
-  {'class_name': 'Brickwork', 'position':     (1050,135)},
-  #{'class_name': 'Brickwork', 'position':     (1100,135)},
-  #{'class_name': 'Brickwork', 'position':     (1150,135)},
-
-  {'class_name': 'Karlson', 'position': (40,650), 'boundary': (0,000,1200,650)},
-  {'class_name': 'Kartoffel', 'position': (100,40)}, # denne er lavet af Snorre og skal pilles lidt i før den virker
-  {'class_name': 'Pizza', 'position': (1000,185)},
-  {'class_name': 'Marsmand', 'position': (350,350)},
-
+  {'class_name': 'Background', 'file_name': None, 'color': pygame.Color('dodgerblue1')},
+  {'class_name': 'BasicPlayer', 'position': (40,650), 'boundary': (0,000,1200,650)},
+  {'class_name': 'BasicObject', 'position': (100,40)},
 ])
 
 # Level 2 =====================================================================
